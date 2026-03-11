@@ -1,1 +1,5 @@
-print("Hello Raspberry")
+import sys
+
+print("Hello World")
+print(sys.version)
+

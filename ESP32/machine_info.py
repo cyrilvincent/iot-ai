@@ -14,7 +14,7 @@ print(f"DateTime: {rtc.datetime()}")
 print(f"CPU Frequency: {machine.freq() // 1000000}MHz")
 while True:
     print(f"CPU Temperature: {int(convert_fahrenheit_to_celsius(esp32.raw_temperature()))}°C")
-    time.sleep(1)
+    time.sleep(10)
     
 
 
