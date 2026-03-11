@@ -1,0 +1,3 @@
+CP210X : Arduino USB Driver, inutile géré automatiquement par Arduino Studio
+CDM : USB TTL Driver
+ESP32 : inutile, géré automatiquement par Thonny
