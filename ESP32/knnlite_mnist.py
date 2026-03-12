@@ -1,5 +1,7 @@
 import knn_lite
 
+# Memory error (520Ko)
+# 1 image 28*28 = 784*8 = 6Ko
 model = knn_lite.KNNLite(3)
 print("Loading CSV")
 xtrain = model.load_csv("x_mnist_train.csv")

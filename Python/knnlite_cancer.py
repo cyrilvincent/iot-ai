@@ -2,8 +2,8 @@ import knn_lite
 
 model = knn_lite.KNNLite(3)
 print("Loading CSV")
-xtrain = model.load_csv("data/breast-cancer/x_cancer_train.csv")[10:]
-ytrain = model.load_csv_1d("data/breast-cancer/y_cancer_train.csv")[10:]
+xtrain = model.load_csv("data/breast-cancer/x_cancer_train.csv")
+ytrain = model.load_csv_1d("data/breast-cancer/y_cancer_train.csv")
 means = model.load_csv_1d("data/breast-cancer/scaler_cancer_mean.csv")
 stds = model.load_csv_1d("data/breast-cancer/scaler_cancer_scale.csv")
 xnorm = model.scale(xtrain, means, stds)
