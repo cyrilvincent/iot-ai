@@ -4,7 +4,6 @@ import sklearn.model_selection as ms
 import sklearn.ensemble as rf
 import sklearn.preprocessing as pp
 import emlearn
-from emlearn.preprocessing import Quantizer
 
 np.random.seed(42)
 
@@ -23,10 +22,6 @@ ytest = ytest[:nb]
 
 xtrain = xtrain / 255.
 xtest = xtest / 255.
-
-# quantizer = Quantizer(max_value=255.0)
-# xtrain = quantizer.fit_transform(xtrain)
-# xtest = quantizer.transform(xtest)
 
 # Inutilisable sur ESP32 trp de features
 model = rf.RandomForestClassifier(n_estimators=1, max_depth=3, random_state=42) # Ne marche pas au dessus
