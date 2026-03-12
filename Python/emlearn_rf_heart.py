@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import sklearn.model_selection as ms
 import sklearn.ensemble as rf
-import matplotlib.pyplot as plt
 import sklearn.preprocessing as pp
 import emlearn
 
