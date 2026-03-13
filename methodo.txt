@@ -69,7 +69,18 @@ results[FEATURE_MEAN] = avg
     results[FEATURE_ENERGY] = energy = 0
     results[FEATURE_ENTROPY] = entropy = 0
  
+Thonny
+Pour installer un bin manuellement cliquer sur le bouton hamburger tout en bas
 
+pip install mpremote
+mpremote cp -r :/ ./backup/
+
+Camera
+AliExpress achetée seule = OV2660
+Le lot = OV3660
+ESP32-CAM (HAT) = OV3660
+Celui de test= OV2640
+Port I2S
 
 
 

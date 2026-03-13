@@ -6,4 +6,4 @@ scikit-learn>=1.5.0
 setuptools>=75.0.0
 pandas
 matplotlib
-tensorflow-cpu<=2.14.1
+tensorflow-cpu<2.14.1

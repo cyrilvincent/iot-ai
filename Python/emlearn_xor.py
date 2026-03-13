@@ -5,6 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import get_scorer
 
 print(emlearn.__version__)
+print(numpy.__version__)
 
 # Generate simple dataset
 def make_xor(lower=0.0, upper=1.0, threshold=0.5, samples=100, seed=42):
