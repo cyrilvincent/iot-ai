@@ -1,0 +1,78 @@
+Heart 10 features * 260
+Cancer 30 * 569
+MNIST 784 * 60000
+HAR 3 data tous les 10ms => sample de 640ms = 192 * 4Go
+
+kNN Heart (knn-lite est en 32 bits)
+Train 80% = 208
+10 * 208 = 2080 = 8 Ko en int32
+
+kNN Cancer
+Train = 455
+30 * 455 = 27 300 = 110 Ko
+Les CSV = 131 Ko
+Limite RAM dispo en Python = environ 150Ko
+Pb RAM ok en C++
+
+kNN MNIST
+Train = 48000
+Features = 784
+784 * 48000 = 75 Mo impossible
+
+kNN HAR
+1s = 300 features
+Train = Plusieurs Go
+Impossible
+
+RF Cancer
+Quantization Passage en 16 bits
+Train = 55Ko
+
+RF MNIST
+Nb Feature max ~= 100
+784 features = impossible
+
+RF HAR
+int16
+Kernel = 128 (1.28s)
+372 features = quasi impossible
+Algo
+Window = 128
+On attends d'avoir 128x3 x, y, z soit 1.28s
+On applique x3 une médiane mobile sans perte des border => 128x3
+On applique facultativement une dérivée (newx[i] = x[i+1]-x[i] sans perte des border => 128x3
+On applique 10 fonctions de réductions (median, q25, ...) => 10x3
+On applique L1 => 128 + on applique 8 fonctions de réductions (idem sauf q25 et q75) => 8
+Idem pour L2 = 8
+ON somme le tout => 46
+ON fait cela 2 fois (1 fois sans les dérivées, 1 fois sur les dérivées) => 92
+
+Méthodo pour abaissement dimension
+Pour toutes series
+	PCA non dispo en micropython, bientôt ...
+	L1 & L2 c'est du PCA light
+	L1 & L2 avec chevauchement
+	Correlation de Pearson puis selection des colonnes
+	Feature Importance => puis selection de colonnes
+	On peu mélanger garder les TOP5 + 1 L1 & L2 pour les autres colonnes
+Série temporelles ou données corrélée (image)
+	Mobile + derivée
+	Répetition des colonnes dans un fenêtre + fonctions de réductions
+results[FEATURE_MEAN] = avg
+    results[FEATURE_MEDIAN] = median
+    results[FEATURE_Q25] = l[Q1]
+    results[FEATURE_Q75] = l[Q3]
+    results[FEATURE_IQR] = (l[Q3] - l[Q1])
+    results[FEATURE_MIN] = mn
+    results[FEATURE_MAX] = mx
+    results[FEATURE_STD] = std
+    results[FEATURE_ENERGY] = energy = 0
+    results[FEATURE_ENTROPY] = entropy = 0
+ 
+
+
+
+
+
+
+

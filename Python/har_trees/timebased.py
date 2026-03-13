@@ -122,7 +122,10 @@ def corr(a, b, out):
 def jerk_filter(inp, out):
     out[0] = 0
     for i in range(len(inp) - 1):
-        out[i] = (inp[i + 1] - inp[i])
+        dif = inp[i + 1] - inp[i]
+        if abs(dif) > 2 ** 15 - 1:
+            dif = 2 ** 15 - 1
+        out[i] = dif
 
 #########################################w
 
@@ -178,7 +181,7 @@ def median_filter(inp, out):
 
 def calculate_features_xyz(xyz):
 
-    xo, yo, zo = xyz
+    xo, yo, zo = xyz # 3x128
     window_length = len(xo)
 
     # pre-allocate arrays
@@ -188,7 +191,7 @@ def calculate_features_xyz(xyz):
     ym = array.array(DATA_TYPECODE, range(window_length))
     zm = array.array(DATA_TYPECODE, range(window_length))
 
-    l2_norm_sq = array.array(DATA_TYPECODE, range(window_length))
+    l2_norm_sq = array.array(DATA_TYPECODE, range(window_length)) # 128
     l1_norm = array.array(DATA_TYPECODE, range(window_length))
     l1_norm_jerk = array.array(DATA_TYPECODE, range(window_length))
     l2_norm_sq_jerk = array.array(DATA_TYPECODE, range(window_length))
@@ -216,7 +219,7 @@ def calculate_features_xyz(xyz):
 
     # compute norms
     # do the squared L2 norm for now instead of the normal L2 norm
-    norm_filter_l1(x, y, z, l1_norm)
+    norm_filter_l1(x, y, z, l1_norm) # 3x128 => 128
     norm_filter_l2_squared(x, y, z, l2_norm_sq)
     jerk_filter(l1_norm, l1_norm_jerk)
     jerk_filter(l2_norm_sq, l2_norm_sq_jerk)
@@ -247,7 +250,7 @@ def calculate_features_xyz(xyz):
             tl2 = l2_norm_sq
             jerk_name = ""
 
-        results = calculate_features_of_transform(tx, ty, tz, features_array)
+        results = calculate_features_of_transform(tx, ty, tz, features_array) # 128 128 128 10
         all_results += results
 
         # jerk_name, "L1Norm"

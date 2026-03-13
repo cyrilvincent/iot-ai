@@ -4,7 +4,7 @@ import sklearn.model_selection as ms
 import sklearn.ensemble as rf
 import sklearn.preprocessing as pp
 import emlearn
-import matplotlib.pyplot as plt
+import pca_lite
 
 np.random.seed(42)
 
@@ -21,23 +21,20 @@ scaler.fit(xtrain)
 xtrain = scaler.transform(xtrain)
 xtest = scaler.transform(xtest)
 
-model = rf.RandomForestClassifier(n_estimators=20, max_depth=6, max_features=2, random_state=1)
+pca = pca_lite.PCALite(10, 5)  # Réduction de 30 à 12 dimensions
+xtrain = pca.reduce2(xtrain)
+xtest = pca.reduce2(xtest)
+
+model = rf.RandomForestClassifier(n_estimators=10, max_depth=10, max_features=2, random_state=1)
 model.fit(xtrain, ytrain)
 score_train = model.score(xtrain, ytrain)
 score_test = model.score(xtest, ytest)
 print(score_train, score_test)
 
 cmodel = emlearn.convert(model, method='inline')
-cmodel.save(file="data/breast-cancer/cancer_rf_model.csv", name='rf', format='csv')
+cmodel.save(file="data/breast-cancer/cancer_pca_rf_model.csv", name='rf', format='csv')
 
-# tree.export_graphviz(model.estimators_[0], out_file="data/breast-cancer/tree.dot", feature_names=x.columns, class_names=["0", "1"])
-#
-print(model.feature_importances_)
-print(np.argsort(model.feature_importances_)[-5:][::-1])
-plt.bar(x.columns, model.feature_importances_)
-plt.xticks(rotation=45)
-plt.show()
+np.savetxt('data/breast-cancer/scaler_pca_cancer_mean.csv',  scaler.mean_,  delimiter=',')
+np.savetxt('data/breast-cancer/scaler_pca_cancer_scale.csv', scaler.scale_, delimiter=',')
 
-
-
-
+# Il serait possible de faire un TOP 10 + 1 PCA L1 et L2 pour les autres colonnes ce qui ferais 12 features
