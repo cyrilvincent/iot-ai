@@ -26,7 +26,7 @@ print("Loaded")
 def normalize(row):
     print("Normalize")
     return array.array('h', [
-        int((row[i] - scaler_mean[i]) / scaler_scale[i] * 32767)
+        int(((row[i] - scaler_mean[i]) / scaler_scale[i]) * 32767)
         for i in range(len(row))
     ])    
         

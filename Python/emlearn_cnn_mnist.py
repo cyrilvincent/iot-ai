@@ -188,4 +188,4 @@ if __name__ == '__main__':
     # python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_fp32.tflite 0
     # python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_int8.tflite 1 quant_img_mnist/ 0to1
     # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_fp32.tflite ../../python/data/mnist/mnist_cnn_fp32.tmdl fp32 1 28,28 10
-    # tflite2tmdl.py ../../python/data/mnist/mnist_cnn.int8_tflite ../../python/data/mnist/mnist_cnn_int8.tmdl int8 0 28,28 10
+    # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn.int8_tflite ../../python/data/mnist/mnist_cnn_int8.tmdl int8 0 28,28 10
