@@ -84,12 +84,18 @@ MNIST
 Nb Poids = 784*500+500*200+200*100+100*1=692100=2.8Mo
 
 MLP TFlite
-Quantization 8 bits
-1 input en + par neurone = seuil
+32 bits
 Heart=Pas assez de data, ne converge pas
 Cancer=2 outputs softmax = 31*21+21*11+11*3 = 3.7Ko minmaxscaler
+MNIST impossible
+MNIST 1 Layer 100 = 328Ko impossible
+
+MLP TFlite Quantization
+Quantization 8 bits & 16 bits
+Cancer tester même si inutile
 MNIST = 692Ko
-MNIST 1 Layer 200 = 79Ko mais pas très précis
+MNIST 1 Layer 100 = 785*101+201*11 82Ko en 8 bits
+On ne peut quantizer les fonctions d'activation que des images
 
 CNN
 MNIST profond

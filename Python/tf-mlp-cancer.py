@@ -45,3 +45,5 @@ model.save("data/breast-cancer/cancer_mlp.h5")
 # python h5_to_tflite.py ../../python/data/breast-cancer/cancer_mlp.h5 ../../python/data/breast-cancer/cancer_mlp.tflite 0
 # python tflite2tmdl.py ../../python/data/breast-cancer/cancer_mlp.tflite ../../python/data/breast-cancer/cancer_mlp.tmdl fp32 1 30 2
 # 3.9Ko
+
+
