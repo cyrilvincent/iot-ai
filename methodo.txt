@@ -69,6 +69,37 @@ results[FEATURE_MEAN] = avg
     results[FEATURE_ENERGY] = energy = 0
     results[FEATURE_ENTROPY] = entropy = 0
  
+MLP Sklearn ou MLP TF
+32 bits
+Heart
+Hidden=8
+Nb Poids = 10*8+8*1=88 = 0.4Ko
+
+Cancer
+Hidden=20,10
+Nb Poids = 30*20+20*10+10*1=810 = 3.2Ko
+
+MNIST
+500,200,100
+Nb Poids = 784*500+500*200+200*100+100*1=692100=2.8Mo
+
+MLP TFlite
+Quantization 8 bits
+1 input en + par neurone = seuil
+Heart=Pas assez de data, ne converge pas
+Cancer=2 outputs softmax = 31*21+21*11+11*3 = 3.7Ko minmaxscaler
+MNIST = 692Ko
+MNIST 1 Layer 200 = 79Ko mais pas très précis
+
+CNN
+MNIST profond
+
+CNN+TFMot
+
+MobileNet prédiction ?
+
+MobileNet transfert ?
+
 Thonny
 Pour installer un bin manuellement cliquer sur le bouton hamburger tout en bas
 
