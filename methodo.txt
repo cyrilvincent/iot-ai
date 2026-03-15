@@ -1,10 +1,19 @@
+Faire un tp.txt
+
+ESP32 = 162Ko Dont 2Ko pour MicroPython mais les librairies prennent de la RAM
+ESP32 Spiram = 4Mo Diver spécifique
+Test avec mpy_cam-v1.27.0-ESP32_GENERIC-SPIRAM => Ca focntionne 4Mo
+https://github.com/cnadler86/micropython-camera-API/releases
+Thonny
+Pour installer un bin manuellement cliquer sur le bouton hamburger tout en bas
+
 Sans norm
 Avec norm
 Les différentes norm
 Overfitting
 
 pip install mpremote
-mpremote cp -r :/ ./backup/
+mpremote cp -r :/ ./backup/ arreter thonny avant
 
 
 Heart 10 features * 260
@@ -21,7 +30,7 @@ Train = 455
 30 * 455 = 27 300 = 110 Ko
 Les CSV = 131 Ko
 Limite RAM dispo en Python = environ 150Ko
-Pb RAM ok en C++
+Fonctionne mais donne un mauvais resultat
 
 kNN MNIST
 Train = 48000
@@ -34,7 +43,6 @@ Train = Plusieurs Go
 Impossible
 
 RF Cancer
-Quantization Passage en 16 bits
 Train = 55Ko
 
 RF MNIST
@@ -78,28 +86,30 @@ results[FEATURE_MEAN] = avg
     results[FEATURE_ENERGY] = energy = 0
     results[FEATURE_ENTROPY] = entropy = 0
 
-PAssage à MinMaxScaler car le moteur est 8 bits et il faut donc connaitre le 0 et le 256
- 
-MLP Sklearn ou MLP TF
-32 bits
+PAssage à MinMaxScaler car normalisation 0to1 (/255) et non centré sur zéro (n1to1 <=> -1to1)
+
+MLP Sklearn
+32 bits MLP_lite
 Heart
 Hidden=8
 Nb Poids = 10*8+8*1=88 = 0.4Ko
 
+MLP TFLite
+Heart
+Hidden=8
+Nb Poids = 10*8+8*1=88 = 0.4Ko
+Hear ne fonctionne pas
+
 Cancer
 Hidden=20,10
 Nb Poids = 30*20+20*10+10*1=810 = 3.2Ko
+Cancer=2 outputs softmax = 31*21+21*11+11*3 = 3.7Ko minmaxscaler
+Fonctionne
 
 MNIST
 500,200,100
 Nb Poids = 784*500+500*200+200*100+100*1=692100=2.8Mo
-
-MLP TFlite
-32 bits
-Heart=Pas assez de data, ne converge pas
-Cancer=2 outputs softmax = 31*21+21*11+11*3 = 3.7Ko minmaxscaler
-MNIST impossible
-MNIST 1 Layer 100 = 328Ko impossible
+MNIST fonctionne mais donne n'importe quoi
 
 gc.collect() à expliquer
 
@@ -107,15 +117,14 @@ Series Correlées ?
 img, son, fft, har, temporelle
 CNN que pour corrélé
 Quantization = corrélé
+Faire voir les images de HAR quant
 
 MLP TFlite Quantization
 Quantization 8 bits & 16 bits
 Cancer non corrélé donc pas possible
-MNIST = 692Ko
-MNIST 1 Layer 50 = 785*511+201*11 43Ko en 8 bits
-/!\ Le moteur prends un paquet de RAM
-BUG: mettre 28,28,1
-On ne peut quantizer les fonctions d'activation que des images
+MNIST = 1.6Mo
+MNIST = 785*401+401*201+201*11 400Ko en 8 bits
+On ne peut quantizer les fonctions d'activation que des series correlées
 
 
 CNN Sans Pooling ni MLP
@@ -131,18 +140,30 @@ tf_cnn_mlp_mnist.py
 Quantisation obligatoire
 Marche sur PC marche très mal sur ESP32 pourtant même input & outputs
 
-MobileNet prédiction ?
-Support up to mobilenet v1, RepVGG backbone
+Netron pour connaitres les inputs shape
 
-MobileNet transfert ?
+CIFAR10
+Fonctionne
+
+Imagenet 
+Ne marche pas
+
+MobileNetV1
+Support up to mobilenet v1
+0to1 = /255
+n1to1 = -127.5/127.5
+TRain = 800s*20 = 16000s = 5h
+Cats_vs_dogs : https://www.microsoft.com/en-us/download/details.aspx?id=54765
+Fonctionne
 
 HAR CNN
-Ne pas faire
-Shape 3*16,24
-Faire des jpg 48*24
 https://github.com/martiniblack/UCI-HAR/tree/master/UCI_HAR
 
 CNN+TFMot
+Juste PPT
+
+Transfert Learning
+Juste les ppt pas le temps de faire TP
 
 ESPDL.FaceDetector : MArche avec MobileNEt mais necessite un flash, marche avec PyTorch
 Se programme en Python+Pytorch en backend puis on flash le tout sur ESP
@@ -150,12 +171,10 @@ Le processus de dev est long
 Uniquement sur ESP32 non portable STM32
 
 MicroMLP.py : A TESTER https://github.com/jczic/MicroMLP
-
-Thonny
-Pour installer un bin manuellement cliquer sur le bouton hamburger tout en bas
+OK
 
 
-
+Tester caméra
 Camera
 AliExpress achetée seule = OV2660
 Le lot = OV3660

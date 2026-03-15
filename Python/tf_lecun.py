@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
 
-# LeNet-5
+# AlexNet-5
 def Le_Cun():
     model = Sequential()
     model.add(Convolution2D(6, (3, 3), activation='relu',input_shape=(32,32,1))) #28*28*6

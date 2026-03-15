@@ -1,0 +1,32 @@
+Installer Python 3.10 (ou 3.11)
+
+TP 1 : SKLearn
+Créer projet Python 3.10 dans Pycharm
+Ouvrir un invité de commande
+pip install emlearn==0.23.1
+pip install sklearn
+Faire tourner emlearn_xor.py
+
+TP 2 : Thonny
+Installer Thonny
+Dans Run > Configure Interpreter choisir le port USB puis Install or update Micropython
+Appuyer sur le bouton hamburger (3 lignes)
+Choisir le firmware mpy_cam-v1.27.0-ESP32_GENERIC-SPIRAM (téléchargé depuis https://github.com/cnadler86/micropython-camera-API/releases) et l'installer
+Dans Views sélectionner Files & Shell
+Utiliser REPL (le shell) pour faire 1+2 et print("Hello World")
+Ouvrir et exécuter ESP32/machine_info.py
+Ouvrir et exécuter ls-l.py
+Ouvrir et exécuter blink.py
+Faire un script qui allume et éteint la led en appuyant sur le bouton boot (à droite)
+Ouvrir ESP32/emlearn_rf_xor.py ESP32/lib/xtensawin_6.3 cliquer droit sur emlearn_trees.mpy > upload to
+Copier le fichier Python/data/xor_model.csv généré dans le TP1 sur l'ESP32
+Exécuter emlearn_rf_xor.py
+Fermer Thonny
+
+
+
+
+
+TP 16 : Industrialisation
+Sauvegarder vos fichier avec mpremote
+Dumper le contrôleur avec esptool

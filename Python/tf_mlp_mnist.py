@@ -20,7 +20,8 @@ y_train = tf.keras.utils.to_categorical(y_train)
 y_test = tf.keras.utils.to_categorical(y_test)
 
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(20, activation="relu", input_shape=(x_train.shape[1],)),
+    tf.keras.layers.Dense(400, activation="relu", input_shape=(x_train.shape[1],)),
+    tf.keras.layers.Dense(200, activation="relu"),
     tf.keras.layers.Dense(10, activation="softmax"),
   ])
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
@@ -51,9 +52,9 @@ plt.show()
 
 # cd ../TinyMaix/tools
 # python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_fp32.tflite 0
-# python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_fp32.tflite ../../python/data/mnist/mnist_mlp_fp32.tmdl fp32 1 784 10
-# 328Ko KO
+# python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_fp32.tflite ../../python/data/mnist/mnist_mlp_fp32.tmdl fp32 0 784 1
+# 1.6Mo OK
 
 # python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
-# python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 0 784 10
-# 80Ko OK
+# python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 1 784 1
+# 400Ko OK

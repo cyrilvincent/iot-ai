@@ -58,7 +58,7 @@ if __name__ == '__main__':
         src_h = img.size[1]
         src_ch= img.layers
         #if dst_w/dst_h > src_w/src_h:
-        img   = img.resize((dst_w, dst_h), Image.ANTIALIAS)
+        img   = img.resize((dst_w, dst_h))
         if dst_ch != src_ch:
             if dst_ch==3 and src_ch==1:
                 img0 = np.array(img)

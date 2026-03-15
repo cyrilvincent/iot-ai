@@ -1,7 +1,7 @@
 # device/micropython code
 
 # Dans Thonny > View > Files
-# Dans ESP32/lib cliquer droit sur emlearn_trees.mpy > upload to
+# Dans ESP32/lib/xtensawin_6.3 cliquer droit sur emlearn_trees.mpy > upload to
 
 import emlearn_trees
 import array
