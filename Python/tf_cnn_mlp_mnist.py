@@ -21,6 +21,7 @@ y_test = tf.keras.utils.to_categorical(y_test, 10)
 x_train = x_train.reshape(x_train.shape[0], 28,28,1)
 x_test = x_test.reshape(x_test.shape[0], 28,28,1)
 
+# A Porter avec le CNN de demo_tf_cnn_mnist
 model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(16, (3, 3), input_shape=(28, 28, 1), padding="same")) # 28,28,16
 model.add(tf.keras.layers.Activation('relu'))

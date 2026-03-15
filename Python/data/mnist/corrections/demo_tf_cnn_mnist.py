@@ -120,7 +120,7 @@ def generate_tinymaix_model(h5_file,
 
     cmd = ' '.join(args)
     print('RUN', cmd)
-    out = subprocess.check_output(args).decode('utf-8')
+    # out = subprocess.check_output(args).decode('utf-8')
 
     # check that outputs have been created
     assert os.path.exists(tflite_file), tflite_file
@@ -145,7 +145,7 @@ def generate_tinymaix_model(h5_file,
     ]
     cmd = ' '.join(args)
     print('RUN', cmd)
-    subprocess.check_output(args).decode('utf-8')
+    # subprocess.check_output(args).decode('utf-8')
 
     # check that outputs have been created
     assert os.path.exists(tmld_file), tmld_file
@@ -164,7 +164,7 @@ def main():
 
     # Export the model using TinyMaix
     # both with quantization and without
-    for config in ["fp32", "int8"]:
+    for config in ["int8", "fp32"]:
         if config == 'int8':
             quantize_data = os.path.join(tinymaix_tools_dir, 'quant_img_mnist/')
         else:
@@ -186,4 +186,4 @@ if __name__ == '__main__':
     # python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_fp32.tflite 0
     # python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_int8.tflite 1 quant_img_mnist/ 0to1
     # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_fp32.tflite ../../python/data/mnist/mnist_cnn_fp32.tmdl fp32 1 28,28 10
-    # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn.int8_tflite ../../python/data/mnist/mnist_cnn_int8.tmdl int8 0 28,28 10
+    # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_int8.tflite ../../python/data/mnist/mnist_cnn_int8.tmdl int8 0 28,28 10
