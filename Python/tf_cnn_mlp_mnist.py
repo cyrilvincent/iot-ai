@@ -23,22 +23,22 @@ x_test = x_test.reshape(x_test.shape[0], 28,28,1)
 
 # A Porter avec le CNN de demo_tf_cnn_mnist
 model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Conv2D(16, (3, 3), input_shape=(28, 28, 1), padding="same")) # 28,28,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2), input_shape=(28, 28, 1), padding="same")) # 28,28,16
 model.add(tf.keras.layers.Activation('relu'))
-model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16
+# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16 remplacé par stride 2
 
-model.add(tf.keras.layers.Conv2D(16, (3, 3))) # 10,10,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2)))  # 10,10,16
 model.add(tf.keras.layers.Activation('relu'))
-model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
+# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
+
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2)))  # 4,4,16
+model.add(tf.keras.layers.Activation('relu'))
+# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 2,2,16
 
 #Dense
-model.add(tf.keras.layers.Flatten()) # 400
-model.add(tf.keras.layers.Dense(128))
+model.add(tf.keras.layers.Flatten()) # 64
+model.add(tf.keras.layers.Dense(32))
 model.add(tf.keras.layers.Activation('relu'))
-model.add(tf.keras.layers.Dropout(0.5))
-model.add(tf.keras.layers.Dense(64))
-model.add(tf.keras.layers.Activation('relu'))
-model.add(tf.keras.layers.Dropout(0.5))
 model.add(tf.keras.layers.Dense(10))
 model.add(tf.keras.layers.Activation('softmax'))
 
@@ -47,19 +47,10 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 model.summary()
 
-hist = model.fit(x=x_train,y=y_train, epochs=10, batch_size=16, validation_data=(x_test, y_test))
+hist = model.fit(x=x_train,y=y_train, epochs=5, batch_size=16, validation_data=(x_test, y_test))
 
-model.save('data/h5/cholletmodel-mnist.h5') # 97.5%
+model.save('data/mnist/mnist_cnn_mlp.h5') # 97.5%
 
-import matplotlib.pyplot as plt
-f, ax = plt.subplots()
-ax.plot([None] + hist.history['accuracy'], 'o-')
-ax.plot([None] + hist.history['val_accuracy'], 'x-')
-ax.legend(['Train accuracy', 'Validation accuracy'], loc = 0)
-ax.set_title('Training/Validation accuracy per Epoch')
-ax.set_xlabel('Epoch')
-ax.set_ylabel('Accuracy')
-plt.show()
-
-test_score = model.evaluate(x_test, y_test)
-print("Test accuracy {:.2f}%".format(test_score[1] * 100))
+# Quantisation obligatoire
+# python h5_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
+# python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_mlp_int8.tflite ../../python/data/mnist/mnist_cnn_mlp_int8.tmdl int8 1 28,28,1 1

@@ -114,13 +114,11 @@ Cancer non corrélé donc pas possible
 MNIST = 692Ko
 MNIST 1 Layer 50 = 785*511+201*11 43Ko en 8 bits
 /!\ Le moteur prends un paquet de RAM
-MNIST ne marche pas on perd bcp en quantisant
+BUG: mettre 28,28,1
 On ne peut quantizer les fonctions d'activation que des images
 
 
-CNN Seul sans bottleneck ni MLP
-ESP32 ok
-Porter demo_tf_cnn_mnist.py en tf_cnn_mnist.py
+CNN Sans Pooling ni MLP
 GlobalAveragePooling2D prend une feature map 3D (hauteur, largeur, canaux) et calcule la moyenne de chaque canal sur toute la dimension spatiale, produisant un vecteur 1D de taille (canaux,).
 [[1, 2, 3, 4],
  [5, 6, 7, 8],
@@ -128,15 +126,13 @@ GlobalAveragePooling2D prend une feature map 3D (hauteur, largeur, canaux) et ca
  [5, 6, 7, 8]]
 Moyenne = (1+2+3+4+5+6+7+8+1+2+3+4+5+6+7+8) / 16 = 4.5
 
-En terme d'apprentissage mettre CNN+MLP avant car ca a été inventé avant (VGG16)
-Par contre coder d'abord le CNN seul pour se rassurer sachant que le code ESP32 fonctionne déjà
 CNN Bottleneck+MLP
-Voir si ca fonctionne avec un petit CNN et petit MLP
 tf_cnn_mlp_mnist.py
-
-CNN+TFMot
+Quantisation obligatoire
+Marche sur PC marche très mal sur ESP32 pourtant même input & outputs
 
 MobileNet prédiction ?
+Support up to mobilenet v1, RepVGG backbone
 
 MobileNet transfert ?
 
@@ -145,6 +141,8 @@ Ne pas faire
 Shape 3*16,24
 Faire des jpg 48*24
 https://github.com/martiniblack/UCI-HAR/tree/master/UCI_HAR
+
+CNN+TFMot
 
 ESPDL.FaceDetector : MArche avec MobileNEt mais necessite un flash, marche avec PyTorch
 Se programme en Python+Pytorch en backend puis on flash le tout sur ESP
