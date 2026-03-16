@@ -16,15 +16,14 @@ def argmax(arr):
 
     return idx_max
 
-def har_load_test_data(path,
-        skip_samples=0, limit_samples=None):
+def har_load_test_data(path, skip_samples=0, limit_samples=None):
  
     n_features = timebased.N_FEATURES
 
     with zipfile.ZipFile(path) as archive:
         ext = '.npy'
         files = { f.rstrip(ext): f for f in archive.namelist() if f.endswith(ext) }
-        #print('archive-files', files.keys())
+        print('archive-files', files.keys())
 
         X_file = archive.open('X.npy')
         Y_file = archive.open('Y.npy')
@@ -45,14 +44,14 @@ def har_load_test_data(path,
 
                 # Read data and label for one image at a time
                 data_chunk = n_features
-                print(n_features)
+                # print(n_features)
                 sample_count = 0
 
                 label_chunks = labels.read_data_chunks(1, offset=1*skip_samples)
                 data_chunks = data.read_data_chunks(data_chunk, offset=data_chunk*skip_samples)
 
                 for l_arr, arr in zip(label_chunks, data_chunks):
-                    print(arr)
+                    # print(arr)
                     yield arr, l_arr
 
                     sample_count += 1

@@ -6,7 +6,7 @@ with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
     xtrain, ytrain = f["x_train"], f["y_train"]
     xtest, ytest = f["x_test"], f["y_test"]
 
-sample = 1000  # 1 on PC vs 1000 on ESP32
+sample = 1000
 xtrain = xtrain[::sample]
 ytrain = ytrain[::sample]
 

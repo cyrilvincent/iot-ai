@@ -14,7 +14,7 @@ with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
 xtrain = xtrain.reshape(-1, 28*28).astype(np.float64)  # 784
 xtest = xtest.reshape(-1, 28*28).astype(np.float64)
 
-nb = 5000
+nb = 1
 xtrain = xtrain[:nb]
 xtest = xtest[:nb]
 ytrain = ytrain[:nb]

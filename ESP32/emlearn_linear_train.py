@@ -27,23 +27,25 @@ s_max = max(surfaces)
 l_min = min(loyers)
 l_max = max(loyers)
 
+print(s_min, s_max, l_min, l_max)
+
 def norm_s(v): return (v - s_min) / (s_max - s_min)
 def norm_l(v): return (v - l_min) / (l_max - l_min)
 def denorm_l(v): return v * (l_max - l_min) + l_min
 
 # n_features=1, alpha=0.0001, l1_ratio=0.15, learning_rate=0.0001
-model = emlearn_linreg.new(1, 0.00001, 0.15, 0.0001)
+model = emlearn_linreg.new(1, 0.1, 0.15, 0.0001)
 
-for i in range(n):
-    x = array.array('f', [norm_s(surfaces[i])])
-    y = array.array('f', [norm_l(loyers[i])])
-    emlearn_linreg.train(model, x, y, verbose=1)
+x = array.array('f', [norm_s(s) for s in surfaces])
+y = array.array('f', [norm_l(l) for l in loyers])
+emlearn_linreg.train(model, x, y, verbose=1, max_iterations=1000)
 
 print("Entraînement terminé")
 
 # --- Prédictions ---
 tests = [10.0, 50.0, 75.0, 100.0]
 for surface in tests:
-    x = array.array('f', [denorm_l(surface)])
+    x = array.array('f', [norm_s(surface)])
     out = model.predict(x)
     print(out)
+    print(denorm_l(out))

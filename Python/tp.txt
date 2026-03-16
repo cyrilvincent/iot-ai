@@ -23,6 +23,166 @@ Copier le fichier Python/data/xor_model.csv généré dans le TP1 sur l'ESP32
 Exécuter emlearn_rf_xor.py
 Fermer Thonny
 
+TP 3 : Regression
+Dans Python
+Etudier data/house/house.csv
+Avec SKLearn effectuer une regression linéaire
+Afficher les information de la regression : model.coef_, model.intercept_
+Dans ESP32
+Créer le linear_predict.py
+Créer la fonction f(x,a,b) ou a est la pente de la regression et b l'interceptino
+Afficher les loyers pour les surfaces [10, 50, 100, 200, 300]
+Bonus
+Effectuer une regression polynomiale de degree 2
+
+TP 4 : kNN Cancer
+Refaire tourner kNN Heart
+Dans Python
+Charger le fichier data/breast-cancer/data.csv
+Combien il y a de features
+Combien il y a de data (lignes)
+y = colonne diagnosis
+x = tous sauf les colonne diagnosis et id
+Créer le modèle KNeighborsClassifier(n_neighbors=3)
+Entrainer le modèle
+Scorer le modèle
+Faire un train_test_split(x, y, test_size=0.2, random_state=42)
+Combien il y a de features dans xtrain
+Combien il y a de data dans xtrain
+Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
+Recommencer l'entrainement et les scorings sur train et test
+Normaliser en StandardScaler les x des cancers
+Sauvegarder dans des csv les scaler.mean_, scaler.scale_
+Sauvegarder dans des csv x_train et y_train
+Copier les csv sur l'ESP32
+Dans ESP32
+Etudier le script lib/knn_lite.py
+Coder la prédiction
+Choisir 2 lignes du dataset pour effectuer la prédiction (mauvaise qualité)
+
+TP5 Facultatif : kNN MNIST
+Dans MNIST kNN il est inutile de normaliser
+sample=1000 dont 1/1000 des images sont prises
+Faire MNIST en kNN
+Combien il y a de features dans xtrain
+Combien il y a de data dans xtrain
+Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
+Copier les data/mnist/*.csv sur l'ESP32
+Copier data/mnist/data avec mpremote
+Faire tourner emlearn_knn_mnist.py sur ESP32
+C'est lent !
+Abaisser le sample à 100 => ca marche mieux mais c'est 100 fois plus lent !
+
+TP 6 : Random Forest Cancer
+Refaire tourner RF Heart
+Dans Python créer emlearn_rf_cancer.py
+Dans ESP32 faire la prédiction
+Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
+
+TP 7 : Random Forest + PCA
+Dans Pycharm refaire tourner em_rf_cancer.py et afficher les features importances
+Copier coller em_rf_cancer.py en emlearn_rf_top5_cancer.py
+Choisir uniquement les 5 1ère colonnes de feature importances avec la commande pandas : x = x.iloc[:, [7, 2, 23, 20, 22]]
+Bonus: faire une corrélation de Pearson, est-ce que le TOP5 est le même
+Refaire tourner l'apprentissage et la prédiction sur l'ESP32
+Copier coller em_rf_cancer.py dans em_rf_pca_cancer.py
+Ouvrir le ficher pca_lite.py et étudier le code
+Effectuer un PCA 10,5 (fenêtre de 10 colonnes avec 5 colonnes de chevauchement)
+La réduction passe de 30 à 12 colonnes
+Refaire l'apprentissage et la réduction
+Est-ce possible pour MNIST ?
+
+TP 8 : HAR Human Activity Recognition
+HAR est un dataset disponible ici : https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones
+Il enregistre les activités de votre téléphone
+Une IA essaye de déterminer votre type d'activité parmis 0 WALKING, 1 WALKING_UPSTAIRS, 2 WALKING_DOWNSTAIRS, 3 SITTING, 4 STANDING, 5 LAYING
+Les activités enregistrées sont les données de l'accéléromètres sur 3 axes et du gyroscope sur 3 axes toutes les 10ms (100Hz)
+Pour le TP nous allons utiliser uniquement l'accéléromètre avec les données notées x, y, z
+Pour déterminer une activité nous avons besoins de 128 mesures soit 1.28s
+Nous avons donc 3*128=384 features ce qui est trop pour RF
+L'algorithme d'abaissement de dimension est le suivant :
+sur x, y, z nous prenons une fenêtre mobile de 128 mesures
+Nous allons appliquer les 10 fonctions statistiques suivantes sur x, y et 10: median, q25, q75, q75-q25, min, max, std, energy=0, entropy
+Cela nous donne 3*10 features
+La série étant temporelle nous appliquons une normalisation L1, nous passons donc de 3*128 à 128 features
+Sur L1 nous appliquons les 8 fonctions statistiques suivantes median, q25, q75, q75-q25, min, max, std
+Cela nous donne 8 features
+Nous faisons la même chose avec une normalisation L2 et obtenons 8 features
+Nous avons donc obtenu 3*10+8+8=46 features
+Sur la séries x,y,z nous appliquons une dérivée (appelée Jerk f(x+1)=f(x+1)-f(x))
+Sur cette nouvelle séries nous appliquons les mêmes calculs et obtenons 46 features supplémentaires
+Nous avons donc en tout 46+46=92 features (réduction de 384 à 92)
+Les capteurs sont 16 bits donc 1.28s = 92*2=184 octets
+L'apprentissage est programmé dans har_trees/har_train.py
+Les fonctions de réductions sont programmées har_tree/timebase.py
+Les fonction de fenêtrage sont programmées dans har_tree/windower.py
+La fonction qui traduit des CSV x,y,z en array de 92 features en 16 bits est programmées dans har_csv_to_npy.py
+Le modèle a déjà été entrainé et est disponible dans data/har/uci_har_tree.csv
+Copier le modèle sur l'ESP32
+Transférer les fichiers data/har/uci_har.testdata.* sur l'ESP32
+Le fichier NPZ contient 1 minute d'activité où l'utilisateur passe par les différents stades d'activité
+Dans ESP32
+Copier lib/zipfile.py npyfile.py et timebased sur ESP32
+Exécuter har_run.py => accuracy=81.7%
+Les erreurs sont souvent dans la passage d'une activité à l'autre à cause de la taille de la fenêtre de 1.28s
+Copier le fichier Python/data/har/2000-01-01T000327_squat.npy qui corresponds à des squats en gym
+Ouvrir har_npy.py sur ESP32 et adapter le code pour ouvrir le ficher 2000-01-01T000327_squat.npy
+Exécuter har_npy.py comme le modèle n'a pas été entrainé pour des squats il va répondre par la catégorie la plus proche
+Nous allons maintenant créer notre propre activité
+Sur votre téléphone téléchargé l'application gratuite "Sensor Logger"
+Choisir le capteur Accelerometer
+Mettez vous au pied d'un escalier
+Démarrer l'enregistrement
+Monter les escalier pendant 10s
+Descendre les escalier pendant 10s
+Arrêter l'enregistrement
+Dans le menu captures vous voyez votre enregistrement
+Cliquer dessus et choisir exporter par mail sur votre mail ou contact@cyrilvincent.com
+Récupérer le CSV sur votre PC et le mettre dans Python/data/har
+Dans Pycharm ouvrir har_csv_to_npy et comprendre et adapter le code qui va convertir votre CSV au format NNPY avec l'algorithme expliqué ci dessus
+Il créé 1 fichier data/har/har_XX.csv toutes les 1.28s
+Ouvrir dans Pycharm har_csv_to_jpg.py qui va effectuer la même chose mais en créant des .jpg, ce qui permet de visualiser votre activité
+Copier un fichier npy sur l'ESP32 et tester votre activité
+Bonus : Adapter le code har_npy.py pour lire en boucle tous les fichiers .npy
+Pour information har_live.py fonctionne en temps réel avec une capteur interntiel de type MPU6886
+
+TP 9 facultatif : MLP Lite
+Refaire tourner sklearn_mlp_heart.py
+Ouvrir et lire mlp_lite.py
+Faire tourner mlp_lite.py sur ESP32
+Adapter le code Python pour le cancer avec un réseau hidden_layer_sizes=(20, 10)
+Calculer le nombre de poids et la taille du modèle
+Ne pas adapter le code ESP32 c'est trop long
+Adapter le code Python pour MNIST
+Calculer le nombre de poids et la taille du modèle
+
+TP 10 : Tensorflow MNIST
+Adapter le code sklearn_mlp_mnist à Tensorflow
+Il n'a a pas de scaler faites simplement : x_train /= 255 et x_test /= 255
+Comme expliquer plus tard nous utiliserons une quantisation 0to1 ce qui veut dire que les valeurs seront comprises entre 0 et 1
+Adapter le dernier layer comme ceci : tf.keras.layers.Dense(2, activation="softmax"), en effet TinyMaix n'est pas compatible sigmoid
+Modifierles y comme ceci : ytrain = tf.keras.utils.to_categorical(ytrain, 2) ce qui transformera [0, 1, 2] en [[1, 0, 0],[0, 1, 0],[0, 0, 1]
+Sauvegarder le .h5 dans data/mnist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
