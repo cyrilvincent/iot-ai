@@ -10,6 +10,8 @@ np.random.seed(42)
 pd.set_option('display.max_columns', None)
 dataframe = pd.read_csv("data/heart/data_cleaned_up.csv")
 
+print(dataframe.corr())
+
 print(dataframe.describe())
 
 y = dataframe["num"]
