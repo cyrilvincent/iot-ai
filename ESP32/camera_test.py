@@ -1,13 +1,10 @@
-import camera
+from camera import Camera, GrabMode, PixelFormat, FrameSize, GainCeiling
 
-cam = camera.Camera(
-    data_pins=[4, 5, 18, 19, 36, 39, 34, 35],
-    vsync_pin=25,
-    href_pin=23,
-    sda_pin=26,
-    scl_pin=27,
-    xclk_pin=21,   # ← était 0
-    pclk_pin=22,   # ← était 21
-)
+# https://github.com/cnadler86/micropython-camera-API
 
+cam = Camera(pixel_format=PixelFormat.JPEG)
 print("Caméra initialisée ✓")
+cam.init()
+img = cam.capture()
+with open("cam.jpg", "wb") as f:
+   f.write(img)

@@ -1,0 +1,13 @@
+Tester caméra
+Camera
+AliExpress achetée seule = OV2660
+Le lot = OV3660
+ESP32-CAM (HAT) = OV3660
+Celui de test= OV2640
+Port I2S
+
+
+
+
+
+

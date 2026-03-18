@@ -4,7 +4,7 @@ TP 1 : Thonny
 Installer Thonny
 Dans Run > Configure Interpreter choisir le port USB puis Install or update Micropython
 Appuyer sur le bouton hamburger (3 lignes)
-Choisir le firmware mpy_cam-v1.27.0-ESP32_GENERIC-SPIRAM (téléchargé depuis https://github.com/cnadler86/micropython-camera-API/releases) et l'installer
+Choisir le firmware mpy_cam-v1.27.0-WROVER_KIT (téléchargé depuis https://github.com/cnadler86/micropython-camera-API/releases) et l'installer
 Dans Views sélectionner Files & Shell
 Utiliser REPL (le shell) pour faire 1+2 et print("Hello World")
 Ouvrir et exécuter ESP32/machine_info.py
@@ -179,6 +179,7 @@ Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonction
 Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
 Refaire tourner le code : ca fonctionne très bien
 Bonus : Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN, pourquoi la shape est de 16*24*1 ?
+Bonus : Utiliser la camera
 
 TP 14 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer la shape d'input
@@ -188,6 +189,7 @@ Dans ESP32
 Copier le TMDL et les *.bin sur l'ESP32
 Executer CIFAR10.py
 Bonus : faire pareil pour ImageNet
+Bonus : utiliser la camera
 
 TP 15 facultatif : MobileNet
 Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la méméoire
