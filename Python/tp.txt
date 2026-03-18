@@ -23,7 +23,7 @@ Copier le fichier Python/data/xor_model.csv généré dans le TP1 sur l'ESP32
 Exécuter emlearn_rf_xor.py
 Fermer Thonny
 
-TP 3 : Regression
+TP 3 Facultatif : Regression
 Installer matplotlib : pip install matplotlib
 Dans Python
 Etudier data/house/house.csv
@@ -82,7 +82,7 @@ TP 7 : EMLearn RF Cancer
 Dans ESP32 faire la prédiction
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
-TP 8 : Random Forest + PCA
+TP 8 : Random Forest + Réduction
 Dans Pycharm refaire tourner em_rf_cancer.py et afficher les features importances
 Copier coller em_rf_cancer.py en emlearn_rf_top5_cancer.py
 Choisir uniquement les 5 1ère colonnes de feature importances avec la commande pandas : x = x.iloc[:, [7, 2, 23, 20, 22]]
@@ -90,7 +90,7 @@ Bonus: faire une corrélation de Pearson, est-ce que le TOP5 est le même
 Refaire tourner l'apprentissage et la prédiction sur l'ESP32
 Copier coller em_rf_cancer.py dans em_rf_pca_cancer.py
 Ouvrir le ficher pca_lite.py et étudier le code
-Effectuer un PCA 10,5 (fenêtre de 10 colonnes avec 5 colonnes de chevauchement)
+Effectuer une réduction 10,5 (fenêtre de 10 colonnes avec 5 colonnes de chevauchement)
 La réduction passe de 30 à 12 colonnes
 Refaire l'apprentissage et la réduction
 Est-ce possible pour MNIST ?
