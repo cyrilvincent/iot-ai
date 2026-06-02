@@ -8,9 +8,8 @@ Choisir le firmware mpy_cam-v1.27.0-WROVER_KIT (téléchargé depuis https://git
 Dans Views sélectionner Files & Shell
 Utiliser REPL (le shell) pour faire 1+2 et print("Hello World")
 Ouvrir et exécuter ESP32/machine_info.py
-Ouvrir et exécuter ls-l.py
-Ouvrir et exécuter blink.py
-Faire un script qui allume et éteint la led en appuyant sur le bouton boot (à droite)
+Ouvrir et exécuter blink.py & button.py
+Ouvrir et exécuter camera_test_*.py en fonction du type de votre camera qui est écrit en tout petit sur le ruban connecteur (OV2640 ou OV3660)
 
 TP 2 : SKLearn
 Créer projet Python 3.10 dans Pycharm
@@ -192,7 +191,7 @@ Bonus : faire pareil pour ImageNet
 Bonus : utiliser la camera
 
 TP 15 facultatif : MobileNet
-Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la méméoire
+Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la mémoire
 cats_vs_dogs_mobilenet.py est une version allégée
 L'apprentissage dure 2h et donne le fichier data/mobilnetv1/cats_vs_dogs.h5
 Etudier le .h5 dans Netron
@@ -201,39 +200,4 @@ Executer sur ESP32 mobilenet_cats_dogs.py
 
 TP 16 : ESPTool
 Copier les fichier de l'ESP32 sur votre PC avec mpremote
-Sauvegarder votre ESTP dans un .bin avec ESPTools
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-TP 16 : Industrialisation
-Sauvegarder vos fichier avec mpremote
 Dumper le contrôleur avec esptool

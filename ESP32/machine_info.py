@@ -30,6 +30,14 @@ total_kb = (total_blocks * block_size) / 1024
 print(f"Stockage total : {total_kb:.1f} KB")
 print(f"Stockage libre : {free_kb:.1f} KB")
 print(f"CPU Temperature: {int(convert_fahrenheit_to_celsius(esp32.raw_temperature()))}°C")
+print(f"ls -l /")
+def ls_l(path="/"):
+    for entry in uos.ilistdir(path):
+        name, etype, inode, size = entry
+        type_char = "d" if etype == 0x4000 else "-"
+        print(f"{type_char}  {size:>8} bytes  {name}")
+
+ls_l("/")
 
     
 
