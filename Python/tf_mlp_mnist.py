@@ -1,6 +1,8 @@
 import tensorflow as tf
-
 import numpy as np
+
+tf.random.set_seed(42)
+np.random.seed(42)
 
 with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
     x_train, y_train = f['x_train'], f['y_train']

@@ -16,7 +16,7 @@ class PCALite:
         x = list(x)
         i = 0
         while i < len(x):
-            j = (i + self.stride) % len(x)
+            j = (i + self.kernel) % len(x)
             if i < j:
                 window = x[i:j]
             else:

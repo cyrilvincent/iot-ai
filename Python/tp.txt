@@ -145,7 +145,7 @@ TP 11 : Tensorflow MNIST
 Installer TF v14 : pip install tensorflow-cpu<2.14.1
 Copier  lib/xtensawin_6.3/emlearn_cnn_*.mpy sur ESP32
 Refaire tourner tf_mlp_cancer.py 
-Adapter le code sklearn_mlp_mnist à Tensorflow
+Adapter le code sklearn_mlp_mnist à Tensorflow dans tf_mlp_mnist.py
 Il n'a a pas de scaler faire simplement : x_train /= 255 et x_test /= 255
 Comme expliquer plus tard nous utiliserons une quantisation 0to1 ce qui veut dire que les valeurs seront comprises entre 0 et 1
 Modifier les y comme ceci : ytrain = tf.keras.utils.to_categorical(ytrain, 2) ce qui transformera [0, 1, 2] en [[1, 0],[0, 1]
@@ -154,7 +154,7 @@ Afficher les scores avec evaluate
 Sauvegarder le .h5 dans data/mnist
 
 TP 12 : TFLite MNIST
-Refaire tourner tf_mlp_cancer.py et emlearn_mlp_cancer.py sur ESP32 
+Refaire tourner tf_mlp_cancer.py et emlearn_mlp_cancer.py sur ESP32
 Dans un invité de commande aller dans TinyMaix : cd ../TinyMaix/tools
 Transformer le H5 en tflite : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_fp32.tflite 0
 Transformer le tflite en tmdl : python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_fp32.tflite ../../python/data/mnist/mnist_mlp_fp32.tmdl fp32 0 784 1
@@ -170,8 +170,7 @@ TP 13 : CNN
 Exécuter et comprendre tf_cnn_mlp_mnist.py
 Calculer le poids du modèle en 8 bits sachant que tensorflow ajouter toujours 1 input à chaque neurone
 Quantiser le h5 en tmdl avec les options suivantes
-python h5
-_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
+python h5_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
 python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_mlp_int8.tflite ../../python/data/mnist/mnist_cnn_mlp_int8.tmdl int8 1 28,28,1 1
 Sur ESP32 copier le tmdl
 Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonctionne encore assez mal
