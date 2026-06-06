@@ -21,6 +21,11 @@ scaler.fit(xtrain)
 xtrain = scaler.transform(xtrain)
 xtest = scaler.transform(xtest)
 
+center_str = ", ".join(f"{v:.4f}" for v in scaler.mean_)
+scale_str = ", ".join(f"{v:.4f}" for v in scaler.scale_)
+print(f"CENTER: {center_str}")
+print(f"SCALE:  {scale_str}")
+
 model = rf.RandomForestClassifier(n_estimators=20, max_depth=6, max_features=2, random_state=1)
 model.fit(xtrain, ytrain)
 score_train = model.score(xtrain, ytrain)
@@ -29,6 +34,7 @@ print(score_train, score_test)
 
 cmodel = emlearn.convert(model, method='inline')
 cmodel.save(file="data/breast-cancer/cancer_rf_model.csv", name='rf', format='csv')
+cmodel.save(file='data/breast-cancer/cancer_rf_model.h', name='breast_cancer_rf')
 
 # tree.export_graphviz(model.estimators_[0], out_file="data/breast-cancer/tree.dot", feature_names=x.columns, class_names=["0", "1"])
 #

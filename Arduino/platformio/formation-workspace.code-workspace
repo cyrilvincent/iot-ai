@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "test",
+			"path": "test"
+		},
+		{
+			"path": "breast_cancer"
+		},
+		{
+			"path": "../../ESP32/C/test_esp32"
+		},
+		{
+			"path": "../../ESP32/C/test_esp-idf"
+		}
+	],
+	"settings": {}
+}

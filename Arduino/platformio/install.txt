@@ -1,0 +1,23 @@
+Ce tuto fait la même chose que Arduino IDE avec .ino
+Aucune valeur ajoutée
+Tuto : https://www.aranacorp.com/fr/programmer-arduino-avec-visual-studio-code/
+
+Autre méthode
+PlatformIO
+
+Arduino IDE for drivers
+Extensions : PlatformIO IDE + C/C++ Extension Pack
+Restart
+Click sur Alien à gauche
+Pick a folder : ne fonctionne pas ?
+Create new project : choisir un emplacement
+Open folder into workspace
+Plusieurs projets : open folder in workspace + save workspace as
+Dans la barre du bas tu peux sélectionner Default : le projet compilé
+Dans la barre du base la prise = serial monitor
+Pour ESP32 ca peut être vraiement long
+
+
+
+
+

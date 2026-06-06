@@ -1,0 +1,11 @@
+Dans gestionnaire de périphérique
+Clic droit sur le périphérique → Propriétés → Détails → ID du matériel
+Tu verras quelque chose comme :
+USB\VID_1A86&PID_7523  → CH340
+USB\VID_10C4&PID_EA60  → CP210x (Silicon Labs)
+USB\VID_0403&PID_6001  → FTDI
+
+ChipDriver
+CH340 https://www.wch.cn/downloads/CH341SER_EXE.html
+CP210x https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers
+FTDI <https://ftdichip.com/drivers/
