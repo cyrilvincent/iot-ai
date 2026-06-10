@@ -13,9 +13,9 @@ Pick a folder : ne fonctionne pas ?
 Create new project : choisir un emplacement
 Open folder into workspace
 Plusieurs projets : open folder in workspace + save workspace as
-Dans la barre du bas tu peux sélectionner Default : le projet compilé
+Dans la barre du bas tu peux sélectionner Default : le projet a compiler
 Dans la barre du base la prise = serial monitor
-Pour ESP32 ca peut être vraiement long
+Pour ESP32 ca peut être vraiment long
 
 
 

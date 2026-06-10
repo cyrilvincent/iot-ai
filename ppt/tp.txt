@@ -1,6 +1,84 @@
-Installer Python 3.10 (ou 3.11)
+TP 1 : Arduino IDE
+Brancher la board Arduino UNO via USB
+Installer Arduino IDE
+Dans Arduino Studio ouvrir le projet Arduino/arduino_ide/hello/hello.ino
+Inspecter le code et le baudrate
+Choisir la board Arduino Uno
+Compiler et téléverser le code sur l'Arduino
+Tips Arduino Nano : choisir Old Bootloader
+Faire de même pour Arduino/arduino_ide/blink
 
-TP 1 : Thonny
+TP 2 : PlatformIO
+Installer VSCode
+Installer les extensions PlatformIO IDE & C/C++ Extension Pack
+Redémarrer VSCode
+Click sur Alien à gauche
+Create new project : choisir un emplacement
+Choisir le framework Arduino, la platfeforme atmelavr et la board uno
+Noter le contenu du fichier platformio.ini généré
+Refaire le TP hello dans main.cpp
+Ajouter le dossier Arduino/platformio/test dossier au workspace : Open folder into workspace, ca peut être un peu long le temps qu'il télécharge les drivers
+Sauvegarder votre workspace : save workspace as
+Lire le fichier platformio.ini
+Dans la barre du bas vous pouvez sélectionner Default : le projet à compiler
+Dans la barre du base la prise = serial monitor
+Executer le projet, c'est l'équivalent du blink
+Refaire pareil avec le dossier ESP32/C/test_esp32 qui porte le code sur ESP32 avec le framework Arduino
+Refaire pareil avec le dossier ESP32/C/test_esp-idf qui porte le code sur ESP32 avec le framework ESP IDF (Très lent au départ : 5 minutes ++)
+
+TP 3 : Python
+Installer Python 3.10
+Dans PyCharm créer un projet Python 3.10
+Créer hello.py qui affiche hello world
+Dans le répertoire Python vous avez un fichier requirements.txt
+Taper dans le terminal de pycharm : pip install -r requirements.txt (ca prend jusqu'à 5 minutes)
+Dans hello.py afficher la version de python + numpy + pandas + sklearn
+
+TP 4 : Pandas
+Dans PyCharm créer tp_house.py
+Charger et analyser avec Pandas python/data/house/house.csv
+Afficher le describe()
+Afficher le nuage de points avec matplotlib
+Charger et analyser avec Pandas python/data/heart/data_cleaned_up.csv
+Afficher le describe()
+Afficher la corrélation de Pearson avec corr(), qu'en déduire ?
+Créer les dataframes ok = df[df["num"]==0] et ko = df[df["num"]==0]
+Qu'en déduire
+
+TP 5 : Régression
+Avec SKLearn effectuer une regression linéaire sur house
+Afficher les information de la regression : model.coef_, model.intercept_
+Afficher le matplotlib
+Créer sur Arduino le projet PlatformIO linear_predict
+Créer la fonction f(x,a,b) ou a est la pente de la regression et b l'interception
+Afficher les loyers pour les surfaces [10, 50, 100, 200, 300]
+Avec SKLearn effectuer une regression polynomiale de degré 2
+Modifier le projet Arduino de prédiction en conséquence
+Bonus : faire de même sur ESP32
+
+TP 6 : kNN Cancer
+Dans Python
+Refaire tourner la démo kNN Heart
+Charger le fichier data/breast-cancer/data.csv
+Combien il y a de features
+Combien il y a de data (lignes)
+y = colonne diagnosis
+x = tous sauf les colonne diagnosis et id
+Faire un train_test_split(x, y, test_size=0.2, random_state=42)
+Combien il y a de features dans xtrain
+Combien il y a de data dans xtrain
+Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
+Créer le modèle KNeighborsClassifier(n_neighbors=3)
+Entrainer le modèle
+Scorer le modèle
+
+TP 7 : Normalisation
+Reprendre le TP 6
+Normaliser en StandardScaler les x des cancers
+Sauvegarder dans des csv les scaler.mean_, scaler.scale_
+Sauvegarder dans des csv x_train et y_train
+
+TP 8 : Thonny
 Installer Thonny
 Dans Run > Configure Interpreter choisir le port USB puis Install or update Micropython
 Appuyer sur le bouton hamburger (3 lignes)
@@ -11,71 +89,44 @@ Ouvrir et exécuter ESP32/machine_info.py
 Ouvrir et exécuter blink.py & button.py
 Ouvrir et exécuter camera_test_*.py en fonction du type de votre camera qui est écrit en tout petit sur le ruban connecteur (OV2640 ou OV3660)
 
-TP 2 : SKLearn
-Créer projet Python 3.10 dans Pycharm
-Ouvrir un invité de commande
-pip install emlearn==0.23.1
-pip install sklearn
-Faire tourner emlearn_xor.py
-Ouvrir ESP32/emlearn_rf_xor.py ESP32/lib/xtensawin_6.3 cliquer droit sur emlearn_trees.mpy > upload to
-Copier le fichier Python/data/xor_model.csv généré dans le TP1 sur l'ESP32
-Exécuter emlearn_rf_xor.py
-Fermer Thonny
+TP 9 : kNN Micropython
+Examiner le fichier esp32/lib/knn_lite.py : il s'agit d'une implémentation d'une prédiction kNN
+Copier knn_lite.py sur ESP32
+Copier les normalisation CSV sur ESP32
+Refaire tourner la démo knn_heart.py
+Créer knn_cancer.py 
 
-TP 3 Facultatif : Regression
-Installer matplotlib : pip install matplotlib
-Dans Python
-Etudier data/house/house.csv
-Avec SKLearn effectuer une regression linéaire
-Afficher les information de la regression : model.coef_, model.intercept_
-Dans ESP32
-Créer le linear_predict.py
-Créer la fonction f(x,a,b) ou a est la pente de la regression et b l'interceptino
-Afficher les loyers pour les surfaces [10, 50, 100, 200, 300]
-Bonus
-Effectuer une regression polynomiale de degree 2
-
-TP 4 : kNN Cancer
-Refaire tourner kNN Heart
-Dans Python
-Charger le fichier data/breast-cancer/data.csv
-Combien il y a de features
-Combien il y a de data (lignes)
-y = colonne diagnosis
-x = tous sauf les colonne diagnosis et id
-Créer le modèle KNeighborsClassifier(n_neighbors=3)
-Entrainer le modèle
-Scorer le modèle
-Faire un train_test_split(x, y, test_size=0.2, random_state=42)
-Combien il y a de features dans xtrain
-Combien il y a de data dans xtrain
-Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
-Recommencer l'entrainement et les scorings sur train et test
-Normaliser en StandardScaler les x des cancers
-Sauvegarder dans des csv les scaler.mean_, scaler.scale_
-Sauvegarder dans des csv x_train et y_train
-Copier les csv sur l'ESP32
-Dans ESP32
-Etudier le script lib/knn_lite.py
-Coder la prédiction
-Choisir 2 lignes du dataset pour effectuer la prédiction (mauvaise qualité)
-
-TP 5 Facultatif : kNN MNIST
+TP 10 : kNN MNIST
 Dans MNIST kNN il est inutile de normaliser
-sample=1000 dont 1/1000 des images sont prises
 Faire MNIST en kNN
 Combien il y a de features dans xtrain
 Combien il y a de data dans xtrain
 Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
 Copier les data/mnist/*.csv sur l'ESP32
 Copier data/mnist/data avec mpremote
-Faire tourner emlearn_knn_mnist.py sur ESP32
-C'est lent !
-Abaisser le sample à 100 => ca marche mieux mais c'est 100 fois plus lent !
+Examiner ESP32/emlearn_knn_mnist.py sur ESP32
+Inutile de le faire tourner ca ne fonctionnera pas !
 
-TP 6 : Random Forest Cancer
-Refaire tourner RF Heart
-Dans Python créer emlearn_rf_cancer.py
+TP 11 : Random Forest Cancer
+Refaire tourner la demo RF Heart
+Créer rf_cancer.py qui effectue un apprentissage Random Forest
+Afficher les feature importances
+Générer l'arbre de décision
+
+TP 12 : RF Cancer C++
+Refaire tourner la démo RF Heart de prédiction sur Arduino
+Côté python afficher les normalisation à l'écran
+Côté Python sauvegarder le modèle en .h
+Copier le modèle sur l'Arduino
+Coder la prédiction sur Arduino en copiant les paramètres de normalisation de Python vers le code C++
+Copier un exemple de données des cancers depuis le CSV vers le code C++
+Bonus : effectuer la prédiction sur ESP32
+
+TP 13 : RF Cancer Micropython
+Côté Python sauvegarder le modèle en .csv
+Copier le modèle sur l'ESP32
+Effectuer la prédiction sur ESP32
+
 
 TP 7 : EMLearn RF Cancer
 Dans ESP32 faire la prédiction

@@ -12,6 +12,9 @@
 		},
 		{
 			"path": "../../ESP32/C/test_esp-idf"
+		},
+		{
+			"path": "heart_rf"
 		}
 	],
 	"settings": {}

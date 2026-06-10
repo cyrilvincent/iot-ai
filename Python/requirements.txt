@@ -1,9 +1,10 @@
 # Installer à la main via pip dans l'ordre
 # Python 3.10 ou 3.11 obligatoire pour tflite
 
-emlearn>=0.21.0
-scikit-learn>=1.5.0
+emlearn==0.23.1
+scikit-learn==1.7.2
 setuptools>=75.0.0
-pandas
+pandas==2.3.3
+numpy==1.26.4
 matplotlib
-tensorflow-cpu<2.14.1
+tensorflow==2.10.1

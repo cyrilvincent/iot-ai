@@ -1,0 +1,145 @@
+TP 0 : Arduino Studio
+Brancher la board via USB
+Installer Arduino Studio
+Dans Arduino Studio ouvrir le projet /ESP32/C/17_01_Hello/17_01_Hello.ino
+Installer dans Board Manager la board ESP32 by Espressif
+Sélectionner votre Board, noter le port COM et choisir le module ESP32-WROOM-DA
+Démarrer le script
+Tester les scripts blink
+NE PAS EXECUTER PRIME CA BLOQUE L'ARDUINO
+Tips Arduino Nanao : choisir Old Bootloader
+
+TP 1 : Thonny
+Installer Thonny
+Installer Micropython
+Utiliser REPL pour faire 1+2 et print("Hello World")
+Bonus : Utiliser REPL pour afficher sys.version & time.localtime (voir hello.py)
+Bonus : exécuter machine_info.py
+Bonus : exécuter prime.py et noter les différence avec l'Arduino et le code C
+Bonus : Configurer Pymakr sur VSCode
+
+TP 2 : Blink
+Dans Arduino Studio, démarrer le projet /ESP32/C/17_02_blink/17_02_blink.ino
+Dans Thonny porter le code C en Micropython
+Bonus : Avec une vrai LED + resistance (à calculer)
+
+TP 3 : Digital
+Mettre en input digital un bouton
+Attention les pins du boutons sont fragiles
+Allumer la Led en cas d'input = HIGH
+Prendre en photo vos montages
+Bonus : Remplacer la LED par une vrai led ou un buzzer
+Bonus : Mettre plusieurs boutons et plusieurs leds par boutton, possibilité de mettre une led multi-couleur
+Bonus : Remplacer le bouton par un détecteur de mouvement, de proximité, de lumière ou autre
+
+TP 4 : Analogique
+Mettre un potar (potar.py)
+Varier l'intensité lumineuse de la led (fade.py et fade_potar.py) 
+Bonus : Faire de même le potar par un capteur de température analogique Grove (temp_grove.py)
+Bonus : Refaire TP 3 avec un relais de puissance
+
+TP5 facultatif : TMS
+Mettre la capteur de température TMS (bleu)
+Afficher la température dans REPL
+
+TP 6 : I2C
+Brancher le capteur de temperature BME I2C
+Copier la librairie bme280_float.py sur l'ESP32 par un simple save as ou save copy en gardant le même nom
+Afficher la temperature et l'humidité dans la console
+Afficher sur un LCD (1602 ou Grove) la température
+Bonus : Tester le lidar VL53L0X (lidar.py)
+
+TP 7 : OLED
+Mettre un écran OLED
+Afficher la température, l'humidité et la pression
+Si on appuie sur un bouton affiche le logo micropython
+Bonus : afficher l'image Hello World
+Bonus : Créer soit même une image
+
+TP 8 : USB REPL
+Sur le PC, saisir temp, hum ou pre
+Retourne par USB l'information (serial_repl_*.py)
+Bonus : Affiche également sur le LCD ou OLED
+
+TP 9 : Serial to Serial
+Brancher en série un ESP32 sur UART2 et un Arduino sur Rx=2 et Tx=3
+Envoyer des messages de l'ESP32 vers l'Arduino en utilisant Arduino/08_04_serial_to_serial (serial_*.py)
+Bonus : Faire la même chose avec 2 ESP32 en Serial sur UART2
+Bonus : Faire répondre l'Arduino ou l'ESP32 récepteur
+
+TP 10 : Serial USB-TTL
+Installer le driver drivers/CDM2123620_Setup.exe
+Idem TP 9 sur UART2 avec un USB-TTL
+Attention bien vérifier que le jumper de l'USB-TTL est en 3.3v et non en 5v et ne pas brancher VCC
+Brancher un USB-TTL : RX TX croisé sur TX2 RX2 et GND sur GND, ne pas brancher VCC
+Programmer la partie PC en Python et l'exécuter en CLI (/python/serial_*.py)
+
+TP 11 : Wifi HTTP REST
+Activer le Wifi et noter votre IP
+Si nécessaire utiliser la box du cours (/wifi.txt)
+Tester un ping
+Créer un service REST / qui retourne un Hello World from ...
+Tester via le navigateur
+Créer un services REST avec les routes temp, hum et pre
+Tester via le navigateur
+Créer la route display qui affiche un message sur le LCD ou OLED
+Tester via navigateur
+Bonus : Tester via le navigateur l'IP de vos voisins
+Bonus : Créer le client Python
+Bonus : Tester le client chez vos voisins
+
+TP 12 : BLE
+Installer le package aioble sur l'ESP32
+Exécuter le script ble_server.py /!\ Les UUID doivent être unique dans la salle
+Installer nRF Connect sur votre téléphone
+Démarrer nRF Connect, votre ESp32 doit apparaitre, connectez vous
+Chercher Unknown Service avec l'UUID de _BLE_SENSOR_CHAR_UUID
+Chercher la caractéristique qui est NOTIFY, READ : vous être sur sensor_task
+Cliquer sur la flêche qui descend, la valeur est dans le champ value
+Chercher la caractéristique qui est NOTIFY, READ, WRITE : vous être sur wait_for_write
+Cliquer sur la fleche qui monte
+Dans le menu déroulant choisir le type TEXT (UTF-8)
+Saisir 1 dans New Value : la led s'allume
+Saisir 0 : la led s'eteint
+Remplacer le service sensor_task par une mesure réelle de température
+Tester sur téléphone
+Bonus : Créer 2 autres services avec humidity et pressure
+Bonus : Créer un service qui affiche un message sur LCD ou OLED
+Bonus : Créer le client Python (ble_client.py)
+Bonus : Tester chez vos voisins
+
+TP 13 facultatif : Multithread
+Créer 3 threads OO qui vont interroger le service REST pour les 3 méthodes respectivement toutes les 1s, 2s et 4s
+Tester
+Bonus : Créer 1 thread qui appel la route display toutes les secondes
+Bonus : Créer 1 thread qui interroge le contrôleur par USB ou Serial
+Bonus : Créer des threads qui interrogent vos voisins
+
+TP 14 : Motors
+Faire fonctionner un moteur à engrenage en 3.3V par l'appuie d'un bouton
+Brancher un servo-moteur en 5V (VIN) et le faire tourner de 0 à 180° en boucle avec la librairie servo
+Faire fonctionner un servo-moteur dont l'angle est lié à un potentiomètre
+Brancher un moteur pas à pas en 5V /!\ Normalement il faudrait du 12V pour fonctionner plus vite
+/!\ Lors du branchement du GND ne pas toucher le 3.3v ni le 5v de l'ESP32
+Faire tourner le moteur pas à pas
+Faire fonctionner le moteur pas à pas en saisissant le nombre de pas à gauche et à droite en utilisant USB, BLE ou HTTP
+Bonus : Afficher l'angle du servo moteur sur un afficheur
+Bonus : Piloter le moteur avec des boutons qui augmentent ou diminuent le nombre de pas
+Bonus : 3.3v est insuffisant pour le moteur à engrenage, faite le fonctionner en 5V (par VIN) avec un relais
+
+TP 15 : MQTT
+Copier lib/broker.emqx.io-ca.crt sur l'ESP32
+Exécuter le code mqtt_emqx_client.py 
+Sur https://mqttx.app/downloads télécharger et installer le client MQTTX Windows Universal
+Ou utiliser l'application téléphonique MyMQTT et activer SSL et v3
+Créer une nouvelle connexion : name=formation et cliquer sur connect
+Cliquer sur new subscription et topic=raspberry/mqtt
+Vous verrez apparaitre vos message et vous pouvez poster un message en JSON que vous verrez apparaitre sur l'ESP32
+
+TP 16 : Industrialisation
+Installer ampy
+Copier tous vos fichiers dans le contrôleur
+Installer et paramétrer putty pour accéder à REPL
+Démarrer un programme avec REPL
+Modifier le ficher boot.py à la racine de l'ESP32
+Dumper le contrôleur avec esptool
