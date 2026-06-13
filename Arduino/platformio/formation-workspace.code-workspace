@@ -15,6 +15,12 @@
 		},
 		{
 			"path": "heart_rf"
+		},
+		{
+			"path": "../../ESP32/C/cancer_mlp"
+		},
+		{
+			"path": "../../ESP32/C/mnist_mlp_8"
 		}
 	],
 	"settings": {}

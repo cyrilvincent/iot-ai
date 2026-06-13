@@ -20,7 +20,12 @@ xtest = scaler.transform(xtest)
 
 np.savetxt('data/breast-cancer/scaler_cancer_min.csv',  scaler.data_min_,  delimiter=',')
 np.savetxt('data/breast-cancer/scaler_cancer_max.csv', scaler.data_max_, delimiter=',')
-
+with open("data/breast-cancer/scaler_cancer.h", "w") as f:
+    f.write("#pragma once\n\n")
+    min_str = ", ".join(f"{v:.6f}f" for v in scaler.data_min_)
+    f.write(f"const float SCALER_MIN[30] = {{{min_str}}};\n\n")
+    max_str = ", ".join(f"{v:.6f}f" for v in scaler.data_max_)
+    f.write(f"const float SCALER_MAX[30] = {{{max_str}}};\n\n")
 
 ytrain = tf.keras.utils.to_categorical(ytrain, 2)
 ytest = tf.keras.utils.to_categorical(ytest, 2)

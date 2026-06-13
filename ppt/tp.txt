@@ -121,37 +121,33 @@ Copier le modèle sur l'Arduino
 Coder la prédiction sur Arduino en copiant les paramètres de normalisation de Python vers le code C++
 Copier un exemple de données des cancers depuis le CSV vers le code C++
 Bonus : effectuer la prédiction sur ESP32
+Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
 TP 13 : RF Cancer Micropython
 Côté Python sauvegarder le modèle en .csv
 Copier le modèle sur l'ESP32
 Effectuer la prédiction sur ESP32
-
-
-TP 7 : EMLearn RF Cancer
-Dans ESP32 faire la prédiction
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
-TP 8 : Random Forest + Réduction
+TP 14 : Random Forest + Réduction
 Dans Pycharm refaire tourner em_rf_cancer.py et afficher les features importances
 Copier coller em_rf_cancer.py en emlearn_rf_top5_cancer.py
-Choisir uniquement les 5 1ère colonnes de feature importances avec la commande pandas : x = x.iloc[:, [7, 2, 23, 20, 22]]
-Bonus: faire une corrélation de Pearson, est-ce que le TOP5 est le même
-Refaire tourner l'apprentissage et la prédiction sur l'ESP32
+Choisir uniquement les 5 1ère colonnes de feature importances avec la commande pandas : x = x.iloc[:, [7, 2, 23, 20, 22]
+Refaire tourner l'apprentissage sur le PC
+Refaire la prédiction sur l'ESP32
 Copier coller em_rf_cancer.py dans em_rf_pca_cancer.py
 Ouvrir le ficher pca_lite.py et étudier le code
 Effectuer une réduction 10,5 (fenêtre de 10 colonnes avec 5 colonnes de chevauchement)
 La réduction passe de 30 à 12 colonnes
 Refaire l'apprentissage et la réduction
 Est-ce possible pour MNIST ?
-Bonus
 Introduire une feature random
 Enlever les colonnes proche du score du random
 
-TP 9 : HAR Human Activity Recognition
+TP 15 : HAR Human Activity Recognition
 L'apprentissage est programmé dans har_trees/har_train.py
 Les fonctions de réductions sont programmées har_tree/timebase.py
-Les fonction de fenêtrage sont programmées dans har_tree/windower.py
+Les fonctions de fenêtrage sont programmées dans har_tree/windower.py
 La fonction qui traduit des CSV x,y,z en array de 92 features en 16 bits est programmées dans har_csv_to_npy.py
 Le modèle a déjà été entrainé et est disponible dans data/har/uci_har_tree.csv
 Copier le modèle sur l'ESP32
@@ -182,42 +178,61 @@ Copier un fichier npy sur l'ESP32 et tester votre activité
 Bonus : Adapter le code har_npy.py pour lire en boucle tous les fichiers .npy
 Pour information har_live.py fonctionne en temps réel avec une capteur interntiel de type MPU6886
 
-TP 10 facultatif : MLP Lite
+TP 16 : MLP Lite
 Refaire tourner sklearn_mlp_heart.py
 Ouvrir et lire mlp_lite.py
 Faire tourner mlp_lite.py sur ESP32
 Adapter le code Python pour le cancer avec un réseau hidden_layer_sizes=(20, 10)
-Calculer le nombre de poids et la taille du modèle
-Ne pas adapter le code ESP32 c'est trop long
-Adapter le code Python pour MNIST
-Calculer le nombre de poids et la taille du modèle
 
-TP 11 : Tensorflow MNIST
-Installer TF v14 : pip install tensorflow-cpu<2.14.1
-Copier  lib/xtensawin_6.3/emlearn_cnn_*.mpy sur ESP32
-Refaire tourner tf_mlp_cancer.py 
-Adapter le code sklearn_mlp_mnist à Tensorflow dans tf_mlp_mnist.py
-Il n'a a pas de scaler faire simplement : x_train /= 255 et x_test /= 255
-Comme expliquer plus tard nous utiliserons une quantisation 0to1 ce qui veut dire que les valeurs seront comprises entre 0 et 1
-Modifier les y comme ceci : ytrain = tf.keras.utils.to_categorical(ytrain, 2) ce qui transformera [0, 1, 2] en [[1, 0],[0, 1]
-Faire la prédiction
-Afficher les scores avec evaluate
-Sauvegarder le .h5 dans data/mnist
+TP 17 : Tensorflow Cancer
+Refaire tourner la démo TF Heart
+Créer tf_mlp_cancer.py en s'inspirant de sklearn_mlp_cancer.py
+Mettre des dropout
+Faire l'apprentissage et afficher les scores
+Enregistrer le modèle en .h5
 
-TP 12 : TFLite MNIST
-Refaire tourner tf_mlp_cancer.py et emlearn_mlp_cancer.py sur ESP32
-Dans un invité de commande aller dans TinyMaix : cd ../TinyMaix/tools
+TP 18 : GPU
+Installer CUDA 11.2
+Installer CuDNN 8.1.0
+Tester avec tf_test_gpu.py
+Refaire tourner le TP 17 qui devrait aller + vite
+Créer tf_mlp_mnist.py qui effectue une catégorisation
+Une normalisation x /= 255
+ytrain=keras.utils.to_categorical(ytrain, 2) ce qui transformera [0, 1] en [[1, 0],[0, 1]]
+Idem pour xtest
+10 sorties avec un softmax comme fonction d'activation
+loss="categorical_crossentropy" dans la compilation
+Enregistrer le modèle en .h5
+Faire l'apprentissage et afficher les scores
+Sauvegarder le .h5
+
+TP 19 : TFLite Cancer
 Transformer le H5 en tflite : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_fp32.tflite 0
-Transformer le tflite en tmdl : python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_fp32.tflite ../../python/data/mnist/mnist_mlp_fp32.tmdl fp32 0 784 1
-Inutile de le faire fonctionner sur ESP32 il est trop gros, c'est trop lent
+Convertir le .tflite en .h avec tflite_to_h.py en adaptant le chemin des fichiers
+Ajouter le projet cancer_mlp dans le workspace platformio
+Copier les .h générés par Python dans PlatformIO dans le répertoire include
+Compiler
+Exécuter sur ESP32
 
-TP 13 facultatif : Quantisation
-Quantiser les données avec
-python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
-python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 1 784 1
+TP 20 : TFLite MNIST 8
+Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
+Convertir le .tflite en .h avec tflite_to_h.py en adaptant le chemin des fichiers
+Ajouter le projet mnist_mlp_8 dans le workspace platformio
+Copier le .h généré par Python dans PlatformIO dans le répertoire include
+Compiler
+Exécuter sur ESP32
+
+TP 21 : TinyMaix Cancer
+Dans un invité de commande aller dans TinyMaix : cd ../TinyMaix/tools
+Créer le .tmdl 32 bits : python tflite2tmdl.py ../../python/data/breast-cancer/cancer_mlp.tflite ../../python/data/breast-cancer/cancer_mlp.tmdl fp32 0 30 1
+Reinstaller MicroPython via Thonny
+Copier le tmdl sur ESP32
+Copier  lib/xtensawin_6.3/emlearn_cnn_*.mpy sur ESP32
+Faire tourner emlearn_mlp_cancer.py sur ESP32
+Quantiser les données avec python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 1 784 1
 Executer emlearn_mlp_mnist.py sur ESP32 après avoir transférer le tmdl (ca fonctionne assez mal)
 
-TP 13 : CNN
+TP 22 : CNN
 Exécuter et comprendre tf_cnn_mlp_mnist.py
 Calculer le poids du modèle en 8 bits sachant que tensorflow ajouter toujours 1 input à chaque neurone
 Quantiser le h5 en tmdl avec les options suivantes
@@ -227,10 +242,10 @@ Sur ESP32 copier le tmdl
 Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonctionne encore assez mal
 Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
 Refaire tourner le code : ca fonctionne très bien
+Utiliser la camera
 Bonus : Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN, pourquoi la shape est de 16*24*1 ?
-Bonus : Utiliser la camera
 
-TP 14 : CIFAR10 & Alexnet
+TP 23 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer la shape d'input
 Ouvrir et comprendre data/cifar10/img_to_bin32.py
 Quantiser le TMDL
@@ -240,7 +255,7 @@ Executer CIFAR10.py
 Bonus : faire pareil pour ImageNet
 Bonus : utiliser la camera
 
-TP 15 facultatif : MobileNet
+TP 24 : MobileNet
 Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la mémoire
 cats_vs_dogs_mobilenet.py est une version allégée
 L'apprentissage dure 2h et donne le fichier data/mobilnetv1/cats_vs_dogs.h5
@@ -248,6 +263,7 @@ Etudier le .h5 dans Netron
 Quantiser le TMDL
 Executer sur ESP32 mobilenet_cats_dogs.py
 
-TP 16 : ESPTool
-Copier les fichier de l'ESP32 sur votre PC avec mpremote
-Dumper le contrôleur avec esptool
+TimeSeries
+https://github.com/ani8897/Human-Activity-Recognition/tree/master
+
+
