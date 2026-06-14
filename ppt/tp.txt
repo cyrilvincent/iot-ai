@@ -267,25 +267,31 @@ Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN
 Pourquoi la shape est de 16*24*1 ?
 Etudier les images de quantisation du répertoire quant générées par har_csv_to_jpg.py
 
-TP 26 : HAR Conv1d
-tf_har_to_tflite.py
-Si pb conv1d refaire car j'ai commenté le instructions non compatibles
+TP 26 : HAR Conv1d + RNN + LSTM
+Entrainer tf_har_conv1d.py
+Il est impossible d'utiliser h5_to_tflite sur des séries temporelles à cause de la quantisation
+Modifier et executer tf_har_to_tflite.py pour transformer le .h5 en .tflite
+Transformer le .tflite en .h avec tflite_to_h
+Sur VSCode ajouter le projet har_rnn
+Noter l'ajout d'un filesystem dans le platformio.ini
+Mettre python/data/accelerometer_rnn.csv dans har_rnn/data
+Vous pouvez créer votre propre csv en convertissant votre Accelerometer.csv avec python/data/har/convert_accelerometer.py
+Créer le filesystem avec la commande suivante dans un terminal powershell "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe" run -t uploadfs
+Vérifier les données du scaler
+Compiler et exécuter sur ESP32 pour les 100 première lignes du CSV soit 0.1s
+Bonus : Exécuter sour tous les CSV
+Créer tf_har_rnn.py à partir de tf_har_conv1d.py en mettant des couches RNN
+C'est très lent et pas très précis
+Porter sur ESP32
+Créer tf_har_lstm.py : c'est beaucoup mieux
+Convertir en .tflite puis .h en décommentant les lignes 28 à 32 de tf_har_tflite_to_h.py
+Ces commandes décommentés nécessite des options de processeur plus complet et plus de RAM comme un STM32MP1
+Cela ne fonctionnera donc pas sur ESP32
 
-En bas de l'écran, la barre PlatformIO a un bouton dédié :
-[ ✓ Build ] [ → Upload ] [ Upload Filesystem Image ]
-Clique sur "Upload Filesystem Image" (l'icône dossier avec une flèche).
-Ou via le menu PlatformIO
-Clique sur l'icône fourmi (PlatformIO) dans la barre latérale gauche
-Déplie ton environnement (esp32dev)
-Clique sur "Upload Filesystem Image"
-
-
-
-
-TP 27 : HAR RNN & LSTM
-Le RNN est lent et fonctionne mal
-tf_har_lstm_to_tflite.py
-LSTM normalement ne fonctionne pas en esp32 int8
+TP 27 : PyTorch
+Rejouer la démo cancer
+Porter MNIST MLP en Torch
+Facultatif : Ajouter TQDM pour afficher la progression
 
 
 

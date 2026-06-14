@@ -21,6 +21,9 @@
 		},
 		{
 			"path": "../../ESP32/C/mnist_mlp_8"
+		},
+		{
+			"path": "../../ESP32/C/har_rnn"
 		}
 	],
 	"settings": {}
