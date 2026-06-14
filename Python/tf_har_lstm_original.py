@@ -1,4 +1,4 @@
-# https://github.com/ani8897/Human-Activity-Recognition
+# https://github.com/ani8897/Human-Activity-Recognition = 91%
 
 import numpy as np
 import pandas as pd
@@ -76,6 +76,14 @@ model = Sequential()
 model.add(LSTM(24, input_dim = parameters1,return_sequences=True))
 model.add(LSTM(12))
 model.add(Dense(6, activation='sigmoid'))
+
+# 	model.add(LSTM(s, input_shape=(None, parameters), return_sequences= False))
+# 	#model.add(Dropout(0.9))
+# 	#model.add(LSTM(18, return_sequences=True))
+# 	#model.add(Dropout(0.2))
+# 	#model.add(LSTM(12))
+# 	model.add(Dense(6, activation='sigmoid'))
+
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 print(model.summary())

@@ -243,8 +243,6 @@ Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonction
 Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
 Refaire tourner le code : ca fonctionne très bien
 Utiliser la camera
-Bonus : Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN, pourquoi la shape est de 16*24*1 ?
-
 TP 23 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer la shape d'input
 Ouvrir et comprendre data/cifar10/img_to_bin32.py
@@ -263,7 +261,12 @@ Etudier le .h5 dans Netron
 Quantiser le TMDL
 Executer sur ESP32 mobilenet_cats_dogs.py
 
-TimeSeries
-https://github.com/ani8897/Human-Activity-Recognition/tree/master
+TP 25 : HAR CNN
+Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN
+Pourquoi la shape est de 16*24*1, étudier la normalisation ?
+Etudier les images de quantisation du répertoire quant générées par har_csv_to_jpg.py
+
+TP 26 : HAR LSTM
+
 
 

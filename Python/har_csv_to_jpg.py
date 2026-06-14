@@ -14,7 +14,7 @@ df = df.astype(np.uint8)
 
 print(df)
 
-hop_length=128
+hop_length = 128
 num_file = 0
 for batch in range(int(len(df) / hop_length)):
     hop_df = df[batch * hop_length: batch * hop_length + hop_length]

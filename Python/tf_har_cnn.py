@@ -2,7 +2,7 @@ import tensorflow as tf
 
 import numpy as np
 
-x_train = np.array([[]])
+x_train = np.array([[]])  # A remplacer par les vrais données, n'est pas fait ici
 x_test = np.array([[]])
 y_train = np.array([])
 y_test = np.array([])
@@ -11,7 +11,6 @@ y_test = np.array([])
 x_train = x_train.reshape(16, 3*8, 1)  # 3*8*16=3*128
 x_test = x_test.reshape(16, 3*8, 1)  # 3*8*16=3*128
 
-# Transform labels to one-hot encoding
 y_train = tf.keras.utils.to_categorical(y_train)
 y_test = tf.keras.utils.to_categorical(y_test)
 
@@ -36,5 +35,5 @@ model.add(tf.keras.layers.Activation('softmax', name="sm"))
 model.compile(optimizer='adam', loss="categorical_crossentropy", metrics=["categorical_accuracy"])
 model.summary()
 
-hist = model.fit(x=x_train, y=y_train, epochs=10, batch_size=32, verbose=1, validation_data=(x_test, y_test), shuffle=True)
+hist = model.fit(x=x_train, y=y_train, epochs=10, batch_size=32, verbose=1, validation_data=(x_test, y_test))
 
