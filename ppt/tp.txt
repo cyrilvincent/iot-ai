@@ -236,6 +236,7 @@ TP 22 : CNN
 Exécuter et comprendre tf_cnn_mlp_mnist.py
 Calculer le poids du modèle en 8 bits sachant que tensorflow ajouter toujours 1 input à chaque neurone
 Quantiser le h5 en tmdl avec les options suivantes
+En ligne de commande aller dans le répertoire tinymaix/tools
 python h5_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
 python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_mlp_int8.tflite ../../python/data/mnist/mnist_cnn_mlp_int8.tmdl int8 1 28,28,1 1
 Sur ESP32 copier le tmdl
@@ -263,10 +264,14 @@ Executer sur ESP32 mobilenet_cats_dogs.py
 
 TP 25 : HAR CNN
 Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN
-Pourquoi la shape est de 16*24*1, étudier la normalisation ?
+Pourquoi la shape est de 16*24*1 ?
 Etudier les images de quantisation du répertoire quant générées par har_csv_to_jpg.py
 
-TP 26 : HAR LSTM
+TODO HAR Conv1d
+
+TP 26 : HAR RNN & LSTM
+python h5_to_tflite.py ../../python/data/har/har_lstm.h5 ../../python/data/har/har_lstm.tflite 0
+LSTM normalement ne fonctionne pas en esp32 int8
 
 
 

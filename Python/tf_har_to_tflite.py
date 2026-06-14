@@ -3,8 +3,11 @@ import numpy as np
 import tensorflow as tf
 
 # Charge le modèle H5
-model = tf.keras.models.load_model("data/har/har_conv1d.h5")
-xtrain = np.load("data/har/raw/xtrain1000.npz")
+h5 = "data/har/har_conv1d.h5"
+h5 = "data/har/har_rnn.h5"
+h5 = "data/har/har_lstm.h5"
+model = tf.keras.models.load_model(h5)
+xtrain = np.load("data/har/raw/xtrain1000.npy")
 
 
 def representative_dataset():
@@ -22,12 +25,15 @@ converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 converter.inference_input_type = tf.int8
 converter.inference_output_type = tf.int8
 
+converter.target_spec.supported_ops = [
+    tf.lite.OpsSet.TFLITE_BUILTINS,
+    tf.lite.OpsSet.SELECT_TF_OPS
+]
+converter._experimental_lower_tensor_list_ops = False
+
 tflite_model = converter.convert()
 
-with open("data/har/har_conv1d_int8.tflite", "wb") as f:
+with open(h5.replace(".h5", "_int8.tflite"), "wb") as f:
     f.write(tflite_model)
-
-# Ne fonctionne pas en int8 sur ESP32
-# Faut essayer fp32
 
 print(f"Taille modèle : {len(tflite_model) / 1024:.1f} KB")

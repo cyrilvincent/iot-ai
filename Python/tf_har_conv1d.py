@@ -56,7 +56,7 @@ xtest,  ytest  = create_sequences(xtest,  ytest,  time_steps, stride)
 
 print(f"xtrain : {xtrain.shape}, xtest : {xtest.shape}")
 
-np.save("data/har/xtrain.npy", xtrain)  # Pour la calibration INT8
+np.save("data/har/raw/xtrain1000.npy", xtrain[:1000])  # Pour la calibration INT8
 
 model = Sequential()
 model.add(Conv1D(64, kernel_size=5, activation='relu', input_shape=(time_steps, xtrain.shape[2])))
@@ -69,9 +69,8 @@ model.add(Dense(6, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 model.summary()
 
-batch_size = 128
-model.fit(xtrain, ytrain, epochs=5, batch_size=batch_size,
-          validation_data=(xtest, ytest), shuffle=True)
+batch_size = 128 # 1.28s
+model.fit(xtrain, ytrain, epochs=10, batch_size=batch_size, validation_data=(xtest, ytest), shuffle=True)
 
 scores = model.evaluate(xtest, ytest, batch_size=1024)
 print(f"Accuracy: {scores[1]*100:.2f}%")
