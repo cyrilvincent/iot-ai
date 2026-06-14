@@ -267,10 +267,24 @@ Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN
 Pourquoi la shape est de 16*24*1 ?
 Etudier les images de quantisation du répertoire quant générées par har_csv_to_jpg.py
 
-TODO HAR Conv1d
+TP 26 : HAR Conv1d
+tf_har_to_tflite.py
+Si pb conv1d refaire car j'ai commenté le instructions non compatibles
 
-TP 26 : HAR RNN & LSTM
-python h5_to_tflite.py ../../python/data/har/har_lstm.h5 ../../python/data/har/har_lstm.tflite 0
+En bas de l'écran, la barre PlatformIO a un bouton dédié :
+[ ✓ Build ] [ → Upload ] [ Upload Filesystem Image ]
+Clique sur "Upload Filesystem Image" (l'icône dossier avec une flèche).
+Ou via le menu PlatformIO
+Clique sur l'icône fourmi (PlatformIO) dans la barre latérale gauche
+Déplie ton environnement (esp32dev)
+Clique sur "Upload Filesystem Image"
+
+
+
+
+TP 27 : HAR RNN & LSTM
+Le RNN est lent et fonctionne mal
+tf_har_lstm_to_tflite.py
 LSTM normalement ne fonctionne pas en esp32 int8
 
 

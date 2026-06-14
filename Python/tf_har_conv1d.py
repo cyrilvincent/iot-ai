@@ -26,20 +26,21 @@ users = data['User'].unique()
 print(f"Utilisateurs : {users}")
 train_users = users[:round(0.8 * len(users))]
 train_data = data[data['User'].isin(train_users)].drop('User', axis=1)
-test_data  = data[~data['User'].isin(train_users)].drop('User', axis=1)
+test_data = data[~data['User'].isin(train_users)].drop('User', axis=1)
 
 ytrain = train_data[['gt']]
-ytest  = test_data[['gt']]
+ytest = test_data[['gt']]
 xtrain = train_data.drop(['gt'], axis=1)
-xtest  = test_data.drop(['gt'], axis=1)
+xtest = test_data.drop(['gt'], axis=1)
 
 scaler = pp.StandardScaler()
 scaler.fit(xtrain)
 xtrain = scaler.transform(xtrain)
-xtest  = scaler.transform(xtest)
+xtest = scaler.transform(xtest)
+print(scaler.mean_, scaler.scale_)
 
 ytrain = keras.utils.to_categorical(ytrain)
-ytest  = keras.utils.to_categorical(ytest)
+ytest = keras.utils.to_categorical(ytest)
 
 time_steps = 100
 stride = 10

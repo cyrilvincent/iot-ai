@@ -1,7 +1,9 @@
-with open("data/mnist/mnist_cnn_mlp_int8.tflite", "rb") as f:
+name = "data/har/har_conv1d_int8.tflite"
+
+with open(name, "rb") as f:
     data = f.read()
 
-with open("data/mnist/mnist_mlp_int8.h", "w") as f:
+with open(name.replace(".tflite", ".h"), "w") as f:
     f.write("unsigned char model_tflite[] = {\n  ")
     hex_values = ", ".join(f"0x{b:02x}" for b in data)
     # Retour à la ligne tous les 12 octets pour la lisibilité
