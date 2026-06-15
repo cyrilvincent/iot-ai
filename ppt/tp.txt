@@ -113,6 +113,10 @@ Créer rf_cancer.py qui effectue un apprentissage Random Forest
 Afficher les feature importances
 Générer l'arbre de décision
 
+
+TP 11 bis : Random Forest RUL
+Effectuer un RandomForestRegressor sur RUL
+
 TP 12 : RF Cancer C++
 Refaire tourner la démo RF Heart de prédiction sur Arduino
 Côté python afficher les normalisation à l'écran
@@ -123,11 +127,17 @@ Copier un exemple de données des cancers depuis le CSV vers le code C++
 Bonus : effectuer la prédiction sur ESP32
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
-TP 13 : RF Cancer Micropython
+TP 12 bis : RF RUL C++
+Effectuer la regression de RF RUL sur Arduino
+
+TP 13 : RF Cancer MicroPython
 Côté Python sauvegarder le modèle en .csv
 Copier le modèle sur l'ESP32
 Effectuer la prédiction sur ESP32
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
+
+TP 13 bis : RF RUL Micropython
+Effectuer la regression de RF RUL sur Arduino en MicroPython
 
 TP 14 : Random Forest + Réduction
 Dans Pycharm refaire tourner em_rf_cancer.py et afficher les features importances
@@ -191,6 +201,9 @@ Mettre des dropout
 Faire l'apprentissage et afficher les scores
 Enregistrer le modèle en .h5
 
+TP 17 bis : TF RUL
+Effectuer une regression MLP sur RUL
+
 TP 18 : GPU
 Installer CUDA 11.2
 Installer CuDNN 8.1.0
@@ -213,6 +226,9 @@ Ajouter le projet cancer_mlp dans le workspace platformio
 Copier les .h générés par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
+
+TP 20 : TFLite RUL
+Effectuer une prédiction RUL sur ESP32
 
 TP 20 : TFLite MNIST 8
 Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
@@ -291,7 +307,29 @@ Cela ne fonctionnera donc pas sur ESP32
 TP 27 : PyTorch
 Rejouer la démo cancer
 Porter MNIST MLP en Torch
-Facultatif : Ajouter TQDM pour afficher la progression
+Ajouter TQDM pour afficher la progression
+Installer CUDA 12.1, inspecter la variable d'environnement PATH
+Porter un modèle CNN en GPU
+
+TP 28 : ExecuTorch
+fp32
+int8
+netron fpe : ok fonctionne
+emuler execution : xnn voir pour autre microcontroler
+test sur xnnpack à expliquer dans ppt
+XNNPACK est optimisé pour x86/ARM64
+Expliquer avantage XNNPack pour pouvoir tester sur PC
+Tester ensuite avec une autre distrib embarquée
+A priori NXP peut s'émuler
+
+
+https://luvsheth.com/p/running-a-pytorch-machine-learning
+SolutionCibleESP32
+ExecuTorchMobile, Cortex-M, Ethos-U❌ pas encore
+ONNX → TFLite → TFLMESP32✅ via conversion
+ONNX → TinyMaixESP32✅ via conversion
+
+
 
 
 
