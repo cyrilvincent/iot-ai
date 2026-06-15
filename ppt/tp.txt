@@ -311,7 +311,20 @@ Ajouter TQDM pour afficher la progression
 Installer CUDA 12.1, inspecter la variable d'environnement PATH
 Porter un modèle CNN en GPU
 
-TP 28 : ExecuTorch XNNPack
+TODO TorchVision
+
+TP 28 : LiteRT-Torch
+Executer pth_to_onnx pour créer le .onnx
+Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
+Nous allons utiliser une méthode plus moderne : litert-torch
+Ouvrir un WSL2 Ubuntu
+Aller dans le répertoire du projet cd /mnt/c/path
+pip install torch litert_torch
+Examiner pth_to_tflite.py
+python3 pth_to_tflite.py
+
+
+TP 29 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
 Ouvrir et comprendre pth_to_fp32_pte.py et bien comprendre la variable shape
 Convertir le pth en pte
@@ -322,17 +335,11 @@ Ouvrir le .pte généré dans Netron
 Tester l'inférence XNNPack avec xnn_cancer_predict.py
 Porter le .pth de MNIST en .pte int8
 
-TP 29 : NXP
-
-
-
+TP 30 : NPU sur NXP
+Multi core
+NPU
 A priori NXP peut s'émuler
 
-
-SolutionCibleESP32
-ExecuTorchMobile, Cortex-M, Ethos-U❌ pas encore
-ONNX → TFLite → TFLMESP32✅ via conversion
-ONNX → TinyMaixESP32✅ via conversion
 
 
 
