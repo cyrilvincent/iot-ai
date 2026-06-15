@@ -311,19 +311,24 @@ Ajouter TQDM pour afficher la progression
 Installer CUDA 12.1, inspecter la variable d'environnement PATH
 Porter un modèle CNN en GPU
 
-TP 28 : ExecuTorch
-fp32
-int8
-netron fpe : ok fonctionne
-emuler execution : xnn voir pour autre microcontroler
-test sur xnnpack à expliquer dans ppt
-XNNPACK est optimisé pour x86/ARM64
-Expliquer avantage XNNPack pour pouvoir tester sur PC
-Tester ensuite avec une autre distrib embarquée
+TP 28 : ExecuTorch XNNPack
+Ouvrir le .pth du cancer dans Netron
+Ouvrir et comprendre pth_to_fp32_pte.py et bien comprendre la variable shape
+Convertir le pth en pte
+Ouvrir le .pte généré dans Netron
+Ouvrir pth_to_int8_pte.py pour comprendre la quantisation XNNPack
+Convertir le .pth en .pte int8
+Ouvrir le .pte généré dans Netron
+Tester l'inférence XNNPack avec xnn_cancer_predict.py
+Porter le .pth de MNIST en .pte int8
+
+TP 29 : NXP
+
+
+
 A priori NXP peut s'émuler
 
 
-https://luvsheth.com/p/running-a-pytorch-machine-learning
 SolutionCibleESP32
 ExecuTorchMobile, Cortex-M, Ethos-U❌ pas encore
 ONNX → TFLite → TFLMESP32✅ via conversion
