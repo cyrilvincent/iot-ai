@@ -320,14 +320,21 @@ Ouvrir le ONNX dans Netron
 Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
 Nous allons utiliser une méthode plus moderne : litert-torch
 litert-torch ne fonctionne pas sur Windows
-Ouvrir un WSL2 Ubuntu
-Aller dans le répertoire du projet cd /mnt/c/path
-sudo apt update && sudo apt upgrade
-sudo apt install python3.10 python3.10-venv python3.10-dev
+Installer Docker Desktop
+Ouvrir docker-compose.yml
+Installer l'image Python : docker pull python:3.10.1
+Ouvrir docker-compose.yml
+Comment les lignes liés à vitis-ai
+Démarrer le docker : docker compose up -d
+Aller dans docker desktop et chercher le docker python-310 et cliquer dessus
+Aller dans l'onglet Exec : vous êtes dans le docker python sous Linux
+ls
+pip install numpy==1.26.4
+pip install scikit-learn==1.7.2
+pip install pandas==2.3.3
 pip install torch litert_torch
-Taper python3 --version et s'assurer que la version >= 10
 Examiner pth_to_tflite.py
-python3 pth_to_tflite.py
+python pth_to_tflite.py
 
 TP 29 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
@@ -364,12 +371,30 @@ Tester la quantisation
 Faire de même sur MNIST en CNN
 Bonus : Sur WSL2 Ubuntu copier le .py et .h5 sur Ubuntu
 	pip install numpy==1.26.4
-	pip install tensorflow==2.10.1
+	pip install tensorflow==2.10.1 s'il y a une erreur faire pip uninstall sur la libraire fautive
 	pip install hls2ml
 	Exécuter le .py
 	Faire de même pour MNIST
 	Faire de même pour un .pth
 	Tester HGQ2
+
+TP 32 : Vitis AI
+Quantiser le MLP Cancer ONNX avec le script quark_cancer.py
+Installer l'image docker de Xilinx Vitis AI : docker pull amdih/vitis-ai:versal-2ve-release_v6.2_0612
+	Ca prends beaucoup de RAM et de temps
+Ouvrier le docker-compose.yml
+Décommenter les lignes liés à vitis-ai
+Dans le répertoire python examiner docker-compose.yml
+Taper docker compose up -d
+Aller dans docker desktop et chercher le docker vitis-ai et cliquer dessus
+Aller dans l'onglet Exec : vous êtes dans vitis-ai
+ls data
+conda activate vitis-ai-pytorch
+
+TODO
+Tester docker python310
+Executer HLS et Visits sur Simulation FPGA avec FPGAs_AdaptiveSoCs_Unified_SDI_2025.2_1114_2157_Win64.Exe ou Docker
+Voiture
 
 
 

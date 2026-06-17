@@ -1,0 +1,474 @@
+[
+    {
+        "node_id:": 0,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 30 ",
+                "input_name:": "input"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "input_zero_point"
+            }
+        ],
+        "node_name:": "input_QuantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 30 ",
+                "output_name:": "input_QuantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 1,
+        "node_inputs:": [
+            {
+                "input_dimension:": "20 ",
+                "input_name:": "net.0.bias_quantized"
+            },
+            {
+                "input_dimension:": "1 ",
+                "input_name:": "net.0.bias_quantized_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.2.bias_quantized_zero_point"
+            }
+        ],
+        "node_name:": "net.0.bias_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "20 ",
+                "output_name:": "net.0.bias"
+            }
+        ]
+    },
+    {
+        "node_id:": 2,
+        "node_inputs:": [
+            {
+                "input_dimension:": "20 30 ",
+                "input_name:": "net.0.weight_quantized"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.0.weight_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.0.weight_zero_point"
+            }
+        ],
+        "node_name:": "net.0.weight_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "20 30 ",
+                "output_name:": "net.0.weight_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 3,
+        "node_inputs:": [
+            {
+                "input_dimension:": "10 ",
+                "input_name:": "net.2.bias_quantized"
+            },
+            {
+                "input_dimension:": "1 ",
+                "input_name:": "net.2.bias_quantized_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.2.bias_quantized_zero_point"
+            }
+        ],
+        "node_name:": "net.2.bias_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "10 ",
+                "output_name:": "net.2.bias"
+            }
+        ]
+    },
+    {
+        "node_id:": 4,
+        "node_inputs:": [
+            {
+                "input_dimension:": "10 20 ",
+                "input_name:": "net.2.weight_quantized"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.2.weight_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.2.weight_zero_point"
+            }
+        ],
+        "node_name:": "net.2.weight_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "10 20 ",
+                "output_name:": "net.2.weight_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 5,
+        "node_inputs:": [
+            {
+                "input_dimension:": "2 ",
+                "input_name:": "net.4.bias_quantized"
+            },
+            {
+                "input_dimension:": "1 ",
+                "input_name:": "net.4.bias_quantized_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.2.bias_quantized_zero_point"
+            }
+        ],
+        "node_name:": "net.4.bias_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "2 ",
+                "output_name:": "net.4.bias"
+            }
+        ]
+    },
+    {
+        "node_id:": 6,
+        "node_inputs:": [
+            {
+                "input_dimension:": "2 10 ",
+                "input_name:": "net.4.weight_quantized"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.4.weight_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "net.4.weight_zero_point"
+            }
+        ],
+        "node_name:": "net.4.weight_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "2 10 ",
+                "output_name:": "net.4.weight_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 7,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 30 ",
+                "input_name:": "input_QuantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "input_zero_point"
+            }
+        ],
+        "node_name:": "input_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 30 ",
+                "output_name:": "input_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 8,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 30 ",
+                "input_name:": "input_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "20 30 ",
+                "input_name:": "net.0.weight_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "20 ",
+                "input_name:": "net.0.bias"
+            }
+        ],
+        "node_name:": "node_linear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 20 ",
+                "output_name:": "relu"
+            }
+        ]
+    },
+    {
+        "node_id:": 9,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 20 ",
+                "input_name:": "relu"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_zero_point"
+            }
+        ],
+        "node_name:": "relu_QuantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 20 ",
+                "output_name:": "relu_QuantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 10,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 20 ",
+                "input_name:": "relu_QuantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_zero_point"
+            }
+        ],
+        "node_name:": "relu_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 20 ",
+                "output_name:": "relu_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 11,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 20 ",
+                "input_name:": "relu_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "10 20 ",
+                "input_name:": "net.2.weight_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "10 ",
+                "input_name:": "net.2.bias"
+            }
+        ],
+        "node_name:": "node_linear_1",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 10 ",
+                "output_name:": "relu_1"
+            }
+        ]
+    },
+    {
+        "node_id:": 12,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 10 ",
+                "input_name:": "relu_1"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_1_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_1_zero_point"
+            }
+        ],
+        "node_name:": "relu_1_QuantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 10 ",
+                "output_name:": "relu_1_QuantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 13,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 10 ",
+                "input_name:": "relu_1_QuantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_1_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "relu_1_zero_point"
+            }
+        ],
+        "node_name:": "relu_1_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 10 ",
+                "output_name:": "relu_1_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 14,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 10 ",
+                "input_name:": "relu_1_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "2 10 ",
+                "input_name:": "net.4.weight_DequantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "2 ",
+                "input_name:": "net.4.bias"
+            }
+        ],
+        "node_name:": "node_linear_2",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "linear_2"
+            }
+        ]
+    },
+    {
+        "node_id:": 15,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 2 ",
+                "input_name:": "linear_2"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "linear_2_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "linear_2_zero_point"
+            }
+        ],
+        "node_name:": "linear_2_QuantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "linear_2_QuantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 16,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 2 ",
+                "input_name:": "linear_2_QuantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "linear_2_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "linear_2_zero_point"
+            }
+        ],
+        "node_name:": "linear_2_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "linear_2_DequantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 17,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 2 ",
+                "input_name:": "linear_2_DequantizeLinear_Output"
+            }
+        ],
+        "node_name:": "node_softmax",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "softmax_QuantizeLinear_Input"
+            }
+        ]
+    },
+    {
+        "node_id:": 18,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 2 ",
+                "input_name:": "softmax_QuantizeLinear_Input"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_zero_point"
+            }
+        ],
+        "node_name:": "softmax_QuantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "softmax_QuantizeLinear_Output"
+            }
+        ]
+    },
+    {
+        "node_id:": 19,
+        "node_inputs:": [
+            {
+                "input_dimension:": "1 2 ",
+                "input_name:": "softmax_QuantizeLinear_Output"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_scale"
+            },
+            {
+                "input_dimension:": "",
+                "input_name:": "softmax_zero_point"
+            }
+        ],
+        "node_name:": "softmax_DequantizeLinear",
+        "node_outputs:": [
+            {
+                "output_dimension:": "1 2 ",
+                "output_name:": "softmax"
+            }
+        ]
+    }
+]
