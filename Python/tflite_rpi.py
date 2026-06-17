@@ -18,3 +18,4 @@ interpreter.invoke()
 
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
+print(np.argmax(output_data))
