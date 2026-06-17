@@ -397,7 +397,11 @@ python vitis_cancer.py : ne pas tenir compte de l'erreur en rouge
 le modèle est ici : ls cache/model
 
 TODO
+RPI
 Voiture
+https://www.kaggle.com/datasets/outofskills/driving-behavior/data
+https://www.kaggle.com/datasets/jefmenegazzo/pvs-passive-vehicular-sensors-datasets
+
 
 
 
