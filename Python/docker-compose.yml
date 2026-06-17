@@ -24,3 +24,15 @@ services:
     environment:
       - USER=root
     command: /bin/bash
+
+  hls:
+    image: python:3.10.1
+    container_name: hls
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/src
+    working_dir: /src
+    environment:
+      - USER=root
+    command: /bin/bash

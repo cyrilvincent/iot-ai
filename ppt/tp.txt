@@ -328,6 +328,7 @@ Comment les lignes liés à vitis-ai
 Démarrer le docker : docker compose up -d
 Aller dans docker desktop et chercher le docker python-310 et cliquer dessus
 Aller dans l'onglet Exec : vous êtes dans le docker python sous Linux
+bash
 ls
 pip install numpy==1.26.4
 pip install scikit-learn==1.7.2
@@ -360,40 +361,42 @@ qemu-system-aarch64.exe -M imx8mp-evk -smp 4 -m 3G ^
   -append "root=/dev/mmcblk2p2" ^
   -drive file=sdcard.img,if=sd,bus=2,format=raw,id=mmcblk2 
 Le login est root, pas de mot de passe
-Vous pouver accéder à Python
+Vous pouvez accéder à Python
 On ne va pas aller plus loin, c'es beaucoup trop lent et peu pratique sur Windows, de plus il n'y a pas le réseau, donc l'installation des librairies est difficile
 Il existe des images NXP toutes prêtes sur le site de NXP mais il faut le véritable hardware
 
-TP 31 : HLS2ML
+TP 31 : HLS4ML
 Executer hls_cancer.py après avoir installé les dépendances
 Inspecter le code C++ généré
 Tester la quantisation
 Faire de même sur MNIST en CNN
-Bonus : Sur WSL2 Ubuntu copier le .py et .h5 sur Ubuntu
-	pip install numpy==1.26.4
-	pip install tensorflow==2.10.1 s'il y a une erreur faire pip uninstall sur la libraire fautive
-	pip install hls2ml
-	Exécuter le .py
-	Faire de même pour MNIST
-	Faire de même pour un .pth
-	Tester HGQ2
+Sur le docker HLS
+bash
+ls
+pip install numpy==1.26.4
+pip install tensorflow==2.10.1
+pip install hls4ml
+Exécuter le hls_cancer.py
+Quantiser hls_cancer
+Faire de même pour MNIST
+Faire de même pour un .pth
+Bonus: Tester HGQ2
 
 TP 32 : Vitis AI
 Quantiser le MLP Cancer ONNX avec le script quark_cancer.py
 Installer l'image docker de Xilinx Vitis AI : docker pull amdih/vitis-ai:versal-2ve-release_v6.2_0612
 	Ca prends beaucoup de RAM et de temps
-Ouvrier le docker-compose.yml
+Ouvrir le docker-compose.yml
 Décommenter les lignes liés à vitis-ai
-Dans le répertoire python examiner docker-compose.yml
-Taper docker compose up -d
-Aller dans docker desktop et chercher le docker vitis-ai et cliquer dessus
+Taper docker compose stop pour arrêter le docker
+docker compose up -d
+Aller dans docker desktop et chercher le docker python/vitis-ai et cliquer dessus
 Aller dans l'onglet Exec : vous êtes dans vitis-ai
-ls data
-conda activate vitis-ai-pytorch
+ls
+python vitis_cancer.py : ne pas tenir compte de l'erreur en rouge
+le modèle est ici : ls cache/model
 
 TODO
-Tester docker python310
-Executer HLS et Visits sur Simulation FPGA avec FPGAs_AdaptiveSoCs_Unified_SDI_2025.2_1114_2157_Win64.Exe ou Docker
 Voiture
 
 
