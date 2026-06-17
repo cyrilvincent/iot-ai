@@ -1,7 +1,7 @@
 import numpy as np
 from tflite_runtime.interpreter import Interpreter
 
-interpreter = Interpreter(model_path="data/mnist/mnist_cnn.h5")
+interpreter = Interpreter(model_path="data/mnist/mnist_cnn_fp32.tflite")
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
