@@ -200,6 +200,7 @@ Créer tf_mlp_cancer.py en s'inspirant de sklearn_mlp_cancer.py
 Mettre des dropout
 Faire l'apprentissage et afficher les scores
 Enregistrer le modèle en .h5
+Convertir le modèle en .onnx avec to_to_onnx.py
 
 TP 17 bis : TF RUL
 Effectuer une regression MLP sur RUL
@@ -355,6 +356,20 @@ Le login est root, pas de mot de passe
 Vous pouver accéder à Python
 On ne va pas aller plus loin, c'es beaucoup trop lent et peu pratique sur Windows, de plus il n'y a pas le réseau, donc l'installation des librairies est difficile
 Il existe des images NXP toutes prêtes sur le site de NXP mais il faut le véritable hardware
+
+TP 31 : HLS2ML
+Executer hls_cancer.py après avoir installé les dépendances
+Inspecter le code C++ généré
+Tester la quantisation
+Faire de même sur MNIST en CNN
+Bonus : Sur WSL2 Ubuntu copier le .py et .h5 sur Ubuntu
+	pip install numpy==1.26.4
+	pip install tensorflow==2.10.1
+	pip install hls2ml
+	Exécuter le .py
+	Faire de même pour MNIST
+	Faire de même pour un .pth
+	Tester HGQ2
 
 
 

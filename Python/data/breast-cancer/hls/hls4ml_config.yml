@@ -1,0 +1,32 @@
+Backend: Vivado
+ClockPeriod: 5
+ClockUncertainty: 12.5%
+HLSConfig:
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision:
+      default: fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    TraceOutput: false
+IOType: io_parallel
+InputData: null
+InputShapes:
+  dense_input:
+  - 30
+KerasModel: !keras_model 'data/breast-cancer/hls/keras_model.keras'
+OutputDir: data/breast-cancer/hls
+OutputPredictions: null
+OutputShapes:
+  layer7_out:
+  - 2
+Part: xcvu13p-flga2577-2-e
+ProjectName: myproject
+Stamp: c648fd94
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteTar: false
+  WriteWeightsTxt: true
