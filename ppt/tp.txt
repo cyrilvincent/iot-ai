@@ -310,19 +310,23 @@ Porter MNIST MLP en Torch
 Ajouter TQDM pour afficher la progression
 Installer CUDA 12.1, inspecter la variable d'environnement PATH
 Porter un modèle CNN en GPU
-
-TODO TorchVision
+Executer torchvision_resnet sur des images téléchargées
+Créer torchvision_mobilenet
 
 TP 28 : LiteRT-Torch
 Executer pth_to_onnx pour créer le .onnx
+Ouvrir le ONNX dans Netron
 Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
 Nous allons utiliser une méthode plus moderne : litert-torch
+litert-torch ne fonctionne pas sur Windows
 Ouvrir un WSL2 Ubuntu
 Aller dans le répertoire du projet cd /mnt/c/path
+sudo apt update && sudo apt upgrade
+sudo apt install python3.10 python3.10-venv python3.10-dev
 pip install torch litert_torch
+Taper python3 --version et s'assurer que la version >= 10
 Examiner pth_to_tflite.py
 python3 pth_to_tflite.py
-
 
 TP 29 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
@@ -335,10 +339,26 @@ Ouvrir le .pte généré dans Netron
 Tester l'inférence XNNPack avec xnn_cancer_predict.py
 Porter le .pth de MNIST en .pte int8
 
-TP 30 : NPU sur NXP
-Multi core
-NPU
-A priori NXP peut s'émuler
+TP 30 : NXP
+Install qemu depuis qemu.org
+Dezipper drivers/quemu/imx_qemu_ready.zip à la racine de c:\progammes\qemu
+Ce zip contient l'image d'un NXP freescale_imx8mpevk qui correspond au NXP i.MX plus et a nécessité 1h30 de compilation à l'aide de build.sh sous WSL2 Ubuntu
+Redimensionner l'image de la sdcard : qemu-img.exe resize sdcard.img 256M
+Démarrer qemu avec :
+qemu-system-aarch64.exe -M imx8mp-evk -smp 4 -m 3G ^
+  -display none -serial null -serial stdio ^
+  -kernel Image ^
+  -dtb imx8mp-evk.dtb ^
+  -append "root=/dev/mmcblk2p2" ^
+  -drive file=sdcard.img,if=sd,bus=2,format=raw,id=mmcblk2 
+Le login est root, pas de mot de passe
+Vous pouver accéder à Python
+On ne va pas aller plus loin, c'es beaucoup trop lent et peu pratique sur Windows, de plus il n'y a pas le réseau, donc l'installation des librairies est difficile
+Il existe des images NXP toutes prêtes sur le site de NXP mais il faut le véritable hardware
+
+
+
+
 
 
 

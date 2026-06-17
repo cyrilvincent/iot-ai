@@ -1,0 +1,3 @@
+https://www.kaggle.com/code/hamzaouammou/d-tection-de-choc
+https://arxiv.org/html/2505.15275v1
+https://www.kaggle.com/code/hamzaouammou/choc-behavior

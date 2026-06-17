@@ -1,0 +1,10 @@
+Créé sous WSL2 Ubuntu
+cd buildroot
+make menuconfig
+Puis dans le menu :
+System configuration
+  → Run a getty after boot → YES
+  → Port to run a getty on → ttymxc0
+  → Baudrate → 115200
+build.sh
+Compilation de 1h30
