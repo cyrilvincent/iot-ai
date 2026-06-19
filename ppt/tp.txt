@@ -310,7 +310,15 @@ Convertir en .tflite puis .h en décommentant les lignes 28 à 32 de tf_har_tfli
 Ces commandes décommentés nécessite des options de processeur plus complet et plus de RAM comme un STM32MP1
 Cela ne fonctionnera donc pas sur ESP32
 
-TP 27 : PyTorch
+TP27 : PVS
+Télécharger le dataset de 40 Go : https://www.kaggle.com/datasets/jefmenegazzo/pvs-passive-vehicular-sensors-datasets
+Inspecter attentivement tf_pvs_to_pkl.py
+Executer tf_pvs_to_pkl.py
+Inspecter tf_pvs.py
+Executer tf_pvs.py
+Bonus : Créer une inférence sur RPI et/ou sur ESP32
+
+TP 28 : PyTorch
 Rejouer la démo cancer
 Porter MNIST MLP en Torch
 Ajouter TQDM pour afficher la progression
@@ -319,7 +327,7 @@ Porter un modèle CNN en GPU
 Executer torchvision_resnet sur des images téléchargées
 Créer torchvision_mobilenet
 
-TP 28 : LiteRT-Torch
+TP 29 : LiteRT-Torch
 Executer pth_to_onnx pour créer le .onnx
 Ouvrir le ONNX dans Netron
 Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
@@ -342,7 +350,7 @@ pip install torch litert_torch
 Examiner pth_to_tflite.py
 python pth_to_tflite.py
 
-TP 29 : ExecuTorch XNNPack
+TP 30 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
 Ouvrir et comprendre pth_to_fp32_pte.py et bien comprendre la variable shape
 Convertir le pth en pte
@@ -353,7 +361,7 @@ Ouvrir le .pte généré dans Netron
 Tester l'inférence XNNPack avec xnn_cancer_predict.py
 Porter le .pth de MNIST en .pte int8
 
-TP 30 : NXP
+TP 31 : NXP
 Install qemu depuis qemu.org
 Dezipper drivers/quemu/imx_qemu_ready.zip à la racine de c:\progammes\qemu
 Ce zip contient l'image d'un NXP freescale_imx8mpevk qui correspond au NXP i.MX plus et a nécessité 1h30 de compilation à l'aide de build.sh sous WSL2 Ubuntu
@@ -370,7 +378,7 @@ Vous pouvez accéder à Python
 On ne va pas aller plus loin, c'es beaucoup trop lent et peu pratique sur Windows, de plus il n'y a pas le réseau, donc l'installation des librairies est difficile
 Il existe des images NXP toutes prêtes sur le site de NXP mais il faut le véritable hardware
 
-TP 31 : HLS4ML
+TP 32 : HLS4ML
 Executer hls_cancer.py après avoir installé les dépendances
 Inspecter le code C++ généré
 Tester la quantisation
@@ -387,7 +395,7 @@ Faire de même pour MNIST
 Faire de même pour un .pth
 Bonus: Tester HGQ2
 
-TP 32 : Vitis AI
+TP 33 : Vitis AI
 Quantiser le MLP Cancer ONNX avec le script quark_cancer.py
 Installer l'image docker de Xilinx Vitis AI : docker pull amdih/vitis-ai:versal-2ve-release_v6.2_0612
 	Ca prends beaucoup de RAM et de temps
@@ -400,12 +408,6 @@ Aller dans l'onglet Exec : vous êtes dans vitis-ai
 ls
 python vitis_cancer.py : ne pas tenir compte de l'erreur en rouge
 le modèle est ici : ls cache/model
-
-TODO
-RPI
-Voiture
-https://www.kaggle.com/datasets/outofskills/driving-behavior/data
-https://www.kaggle.com/datasets/jefmenegazzo/pvs-passive-vehicular-sensors-datasets
 
 
 
