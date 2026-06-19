@@ -1,8 +1,3 @@
-Ce tuto fait la même chose que Arduino IDE avec .ino
-Aucune valeur ajoutée
-Tuto : https://www.aranacorp.com/fr/programmer-arduino-avec-visual-studio-code/
-
-Autre méthode
 PlatformIO
 
 Arduino IDE for drivers
