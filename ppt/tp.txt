@@ -227,9 +227,10 @@ Ajouter le projet cancer_mlp dans le workspace platformio
 Copier les .h générés par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
-
-TP 20 : TFLite RUL
-Effectuer une prédiction RUL sur ESP32
+Accéder au Raspberry Pi via la command ssh pi@ip, le login est pi et le password est raspberrypi
+Activer python avec source venv/bin/activate
+cd iot-ai/Python
+python tflite_rpi_cancer.py
 
 TP 20 : TFLite MNIST 8
 Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
@@ -238,6 +239,8 @@ Ajouter le projet mnist_mlp_8 dans le workspace platformio
 Copier le .h généré par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
+Sur RPI
+python tflite_rpi_mnist.py
 
 TP 21 : TinyMaix Cancer
 Dans un invité de commande aller dans TinyMaix : cd ../TinyMaix/tools
@@ -261,6 +264,8 @@ Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonction
 Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
 Refaire tourner le code : ca fonctionne très bien
 Utiliser la camera
+Bonus : Faire la prédiction sur 
+
 TP 23 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer la shape d'input
 Ouvrir et comprendre data/cifar10/img_to_bin32.py
