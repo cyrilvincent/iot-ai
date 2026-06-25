@@ -276,13 +276,14 @@ Executer CIFAR10.py
 Bonus : faire pareil pour ImageNet
 Bonus : utiliser la camera
 
-TP 24 : MobileNet
+TP 24 : MobileNet & TeachableMachine Dogs vs Cats
 Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la mémoire
 cats_vs_dogs_mobilenet.py est une version allégée
-L'apprentissage dure 2h et donne le fichier data/mobilnetv1/cats_vs_dogs.h5
+L'apprentissage dure 2h et donne le fichier data/mobilenetv1/cats_vs_dogs.h5
 Etudier le .h5 dans Netron
 Quantiser le TMDL
 Executer sur ESP32 mobilenet_cats_dogs.py
+Créer un modèle à partir de data/dogs-vs-cats sur the TeachableMachine
 
 TP 25 : HAR CNN
 Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN

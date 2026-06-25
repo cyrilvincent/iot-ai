@@ -24,6 +24,9 @@
 		},
 		{
 			"path": "../../ESP32/C/har_rnn"
+		},
+		{
+			"path": "../../STM32/test-stm32"
 		}
 	],
 	"settings": {}
