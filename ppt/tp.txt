@@ -21,7 +21,7 @@ Ajouter le dossier Arduino/platformio/test dossier au workspace : Open folder in
 Sauvegarder votre workspace : save workspace as
 Lire le fichier platformio.ini
 Dans la barre du bas vous pouvez sélectionner Default : le projet à compiler
-Dans la barre du base la prise = serial monitor
+Sélectionner la prise (en haut à droite ou en bas) la prise = serial monitor
 Executer le projet, c'est l'équivalent du blink
 Refaire pareil avec le dossier ESP32/C/test_esp32 qui porte le code sur ESP32 avec le framework Arduino
 Refaire pareil avec le dossier ESP32/C/test_esp-idf qui porte le code sur ESP32 avec le framework ESP IDF (Très lent au départ : 5 minutes ++)
@@ -46,14 +46,13 @@ Créer les dataframes ok = df[df["num"]==0] et ko = df[df["num"]==0]
 Qu'en déduire
 
 TP 5 : Régression
-Avec SKLearn effectuer une regression linéaire sur house
-Afficher les information de la regression : model.coef_, model.intercept_
+Avec SKLearn effectuer une régression linéaire sur house
+Afficher les information de la régression : model.coef_, model.intercept_
 Afficher le matplotlib
 Créer sur Arduino le projet PlatformIO linear_predict
-Créer la fonction f(x,a,b) ou a est la pente de la regression et b l'interception
+Créer la fonction f(x,a,b) où a est la pente de la régression et b l'interception
 Afficher les loyers pour les surfaces [10, 50, 100, 200, 300]
-Avec SKLearn effectuer une regression polynomiale de degré 2
-Modifier le projet Arduino de prédiction en conséquence
+Avec SKLearn effectuer une régression polynomiale de degré 2
 Bonus : faire de même sur ESP32
 
 TP 6 : kNN Cancer
@@ -128,7 +127,7 @@ Bonus : effectuer la prédiction sur ESP32
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
 TP 12 bis : RF RUL C++
-Effectuer la regression de RF RUL sur Arduino
+Effectuer la régression de RF RUL sur Arduino
 
 TP 13 : RF Cancer MicroPython
 Côté Python sauvegarder le modèle en .csv
@@ -137,7 +136,7 @@ Effectuer la prédiction sur ESP32
 Le nombre de features doit être < 100, il est donc impossible de faire tourner MNIST
 
 TP 13 bis : RF RUL Micropython
-Effectuer la regression de RF RUL sur Arduino en MicroPython
+Effectuer la régression de RF RUL sur Arduino en MicroPython
 
 TP 14 : Random Forest + Réduction
 Dans Pycharm refaire tourner em_rf_cancer.py et afficher les features importances
@@ -203,7 +202,7 @@ Enregistrer le modèle en .h5
 Convertir le modèle en .onnx avec to_to_onnx.py
 
 TP 17 bis : TF RUL
-Effectuer une regression MLP sur RUL
+Effectuer une régression MLP sur RUL
 
 TP 18 : GPU
 Installer CUDA 11.2
