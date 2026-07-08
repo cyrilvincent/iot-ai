@@ -20,8 +20,6 @@ xtest = scaler.transform(xtest)
 
 print(scaler.mean_, scaler.scale_)
 
-
-
 model = n.KNeighborsClassifier(n_neighbors=3)
 model.fit(xtrain, ytrain)
 

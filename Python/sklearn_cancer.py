@@ -13,8 +13,20 @@ x = df.drop(["diagnosis", "id"], axis=1)
 
 xtrain, xtest, ytrain, ytest = ms.train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
 
+scaler = pp.StandardScaler()
+scaler.fit(xtrain)
+xtrain = scaler.transform(xtrain)
+xtest = scaler.transform(xtest)
+
+print(scaler.mean_, scaler.scale_)
+
 model = n.KNeighborsClassifier(n_neighbors=3)
 model.fit(xtrain, ytrain)
 
 print(model.score(xtrain, ytrain))
 print(model.score(xtest, ytest))
+
+np.savetxt("data/breast-cancer/scaler_mean.csv", scaler.mean_, delimiter=",")
+np.savetxt("data/breast-cancer/scaler_scale.csv", scaler.scale_, delimiter=",")
+np.savetxt("data/breast-cancer/x_train.csv", xtrain, delimiter=",")
+np.savetxt("data/breast-cancer/y_train.csv", ytrain, delimiter=",")
