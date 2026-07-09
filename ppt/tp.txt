@@ -98,7 +98,7 @@ Dans MNIST kNN il est inutile de normaliser
 Faire MNIST en kNN
 Combien il y a de features dans xtrain
 Combien il y a de data dans xtrain
-Copier les python/data/mnist/*.csv sur l'ESP32
+Copier les python/data/mnist/*.csv sur l'ESP32 avec mpremote cp -r .\data\mnist\csv :/
 Copier python/data/mnist/test_data avec mpremote
 Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
 Examiner ESP32/emlearn_knn_mnist.py sur ESP32
