@@ -11,8 +11,8 @@ const float SCALE[30] PROGMEM = {
   7.8382, 0.4530, 0.9843, 18.0637, 63.9118, 0.2506, 0.4976, 23.4856, 0.4530, 0.9455
 };
 
-// Exemple : un sample de test (à remplacer par tes vraies features)
-const float SAMPLE_RAW[30] = {
+// Exemple : un sample de test
+const float SAMPLE_RAW[10] = {
   28,1,2,130,132,0,2,185,0,0
 };
 
@@ -22,13 +22,13 @@ void setup() {
 
 void loop() {
     // Scaling
-  int16_t features[30];
-  for (int i = 0; i < 30; i++) {
+  int16_t features[10];
+  for (int i = 0; i < 10; i++) {
     float center = pgm_read_float(&CENTER[i]);
     float scale  = pgm_read_float(&SCALE[i]);
     float scaled = (SAMPLE_RAW[i] - center) / scale;
     // Clamp vers int16 [-32768, 32767]
-    scaled = constrain(scaled * 1000.0f, -32768.0f, 32767.0f);
+    scaled = constrain(scaled * 10000.0f, -32768.0f, 32767.0f);
     features[i] = (int16_t)scaled;
   }
 
