@@ -3,7 +3,6 @@ import numpy as np
 import sklearn.model_selection as ms
 import sklearn.ensemble as rf
 import sklearn.preprocessing as pp
-import emlearn
 
 np.random.seed(42)
 
@@ -30,21 +29,14 @@ score_train = model.score(xtrain, ytrain)
 score_test = model.score(xtest, ytest)
 print(score_train, score_test)
 
-cmodel = emlearn.convert(model, method='inline')
-cmodel.save(file="data/mnist/mnist_rf_model.csv", name='rf', format='csv')
+# cmodel = emlearn.convert(model, method='inline')
+# cmodel.save(file="data/mnist/mnist_rf_model.csv", name='rf', format='csv')
 
 print("N_TREES :", model.n_estimators)
 print("N_NODES :", sum(tree.tree_.node_count for tree in model.estimators_))
 print("N_CLASSES:", model.n_classes_)
 print("N_FEATURES:", model.n_features_in_)
 
-
-# tree.export_graphviz(model.estimators_[0], out_file="data/breast-cancer/tree.dot", feature_names=x.columns, class_names=["0", "1"])
-#
-# print(model.feature_importances_)
-# plt.bar(x.columns, model.feature_importances_)
-# plt.xticks(rotation=45)
-# plt.show()
 
 
 

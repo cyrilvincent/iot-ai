@@ -157,7 +157,7 @@ Les fonctions de fenêtrage sont programmées dans har_tree/windower.py
 La fonction qui traduit des CSV x,y,z en array de 92 features en 16 bits est programmées dans har_csv_to_npy.py
 Le modèle a déjà été entrainé et est disponible dans data/har/uci_har_tree.csv
 Copier le modèle sur l'ESP32
-Transférer les fichiers data/har/uci_har.testdata.* sur l'ESP32
+Transférer les fichiers python/data/har/uci_har.testdata.* sur l'ESP32
 Le fichier NPZ contient 1 minute d'activité où l'utilisateur passe par les différents stades d'activité
 Dans ESP32
 Copier lib/zipfile.py npyfile.py et timebased sur ESP32

@@ -5,6 +5,7 @@ import sklearn.preprocessing as pp
 import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.tree as tree
+import emlearn
 
 df = pd.read_csv('data/heart/data_cleaned_up.csv')
 df["rnd"] = np.random.rand(len(df))
@@ -32,7 +33,9 @@ plt.show()
 
 np.savetxt('data/heart/scaler_mean.csv',  scaler.mean_,  delimiter=',')
 np.savetxt('data/heart/scaler_scale.csv', scaler.scale_, delimiter=',')
-# np.savetxt('data/heart/x_train.csv', x_train, delimiter=',', fmt='%.6f')
-# np.savetxt('data/heart/y_train.csv', y_train,   delimiter=',', fmt='%d')
+
+cmodel = emlearn.convert(model, method='inline')
+cmodel.save(file="data/heart/heart_rf_model.csv", name='rf', format='csv')
+cmodel.save(file='data/heart/heart_rf_model.h', name='breast_cancer_rf')
 
 tree.export_graphviz(model.estimators_[0], out_file='data/heart/tree.dot', feature_names=x.columns, class_names=["0", "1"])

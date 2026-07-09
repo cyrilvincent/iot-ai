@@ -3,8 +3,8 @@ import numpy as np
 import sklearn.model_selection as ms
 import sklearn.ensemble as rf
 import sklearn.preprocessing as pp
-import emlearn
 import matplotlib.pyplot as plt
+import emlearn
 
 np.random.seed(42)
 
@@ -32,9 +32,9 @@ score_train = model.score(xtrain, ytrain)
 score_test = model.score(xtest, ytest)
 print(score_train, score_test)
 
-cmodel = emlearn.convert(model, method='inline')
-cmodel.save(file="data/breast-cancer/cancer_rf_model.csv", name='rf', format='csv')
-cmodel.save(file='data/breast-cancer/cancer_rf_model.h', name='breast_cancer_rf')
+# cmodel = emlearn.convert(model, method='inline')
+# cmodel.save(file="data/breast-cancer/cancer_rf_model.csv", name='rf', format='csv')
+# cmodel.save(file='data/breast-cancer/cancer_rf_model.h', name='breast_cancer_rf')
 
 # tree.export_graphviz(model.estimators_[0], out_file="data/breast-cancer/tree.dot", feature_names=x.columns, class_names=["0", "1"])
 #
