@@ -6,7 +6,7 @@ with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
     xtrain, ytrain = f["x_train"], f["y_train"]
     xtest, ytest = f["x_test"], f["y_test"]
 
-sample = 1000
+sample = 1
 xtrain = xtrain[::sample]
 ytrain = ytrain[::sample]
 
