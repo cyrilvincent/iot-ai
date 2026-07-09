@@ -64,8 +64,6 @@ Combien il y a de data (lignes)
 y = colonne diagnosis
 x = tous sauf les colonne diagnosis et id
 Faire un train_test_split(x, y, test_size=0.2, random_state=42)
-Combien il y a de features dans xtrain
-Combien il y a de data dans xtrain
 Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
 Créer le modèle KNeighborsClassifier(n_neighbors=3)
 Entrainer le modèle
@@ -91,7 +89,7 @@ Ouvrir et exécuter camera_test_*.py en fonction du type de votre camera qui est
 TP 9 : kNN Micropython
 Examiner le fichier esp32/lib/knn_lite.py : il s'agit d'une implémentation d'une prédiction kNN
 Copier knn_lite.py sur ESP32
-Copier les normalisation CSV sur ESP32
+Copier les normalisations CSV sur ESP32
 Refaire tourner la démo knn_heart.py
 Créer knn_cancer.py 
 
@@ -100,9 +98,9 @@ Dans MNIST kNN il est inutile de normaliser
 Faire MNIST en kNN
 Combien il y a de features dans xtrain
 Combien il y a de data dans xtrain
+Copier les python/data/mnist/*.csv sur l'ESP32
+Copier python/data/mnist/test_data avec mpremote
 Sachant qu'une data est en 32 bits (4 octets) quel sera la taille du modèle ?
-Copier les data/mnist/*.csv sur l'ESP32
-Copier data/mnist/data avec mpremote
 Examiner ESP32/emlearn_knn_mnist.py sur ESP32
 Inutile de le faire tourner ca ne fonctionnera pas !
 
@@ -111,7 +109,6 @@ Refaire tourner la demo RF Heart
 Créer rf_cancer.py qui effectue un apprentissage Random Forest
 Afficher les feature importances
 Générer l'arbre de décision
-
 
 TP 11 bis : Random Forest RUL
 Effectuer un RandomForestRegressor sur RUL
@@ -226,7 +223,7 @@ Ajouter le projet cancer_mlp dans le workspace platformio
 Copier les .h générés par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
-Accéder au Raspberry Pi via la command ssh pi@ip, le login est pi et le password est raspberrypi
+Accéder au Raspberry Pi via la commande ssh pi@ip, le login est pi et le password est raspberrypi
 Activer python avec source venv/bin/activate
 cd iot-ai/Python
 python tflite_rpi_cancer.py

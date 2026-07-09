@@ -10,7 +10,7 @@ def convert_fahrenheit_to_celsius(fahrenheit):
     return celsius
 
 # machine.freq(160000000) # for wroom
-# machine.freq(240000000)
+machine.freq(240000000)
 
 print(f"Python version: {sys.version}")
 rtc = machine.RTC()
