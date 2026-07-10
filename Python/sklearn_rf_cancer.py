@@ -10,6 +10,11 @@ np.random.seed(42)
 
 pd.set_option('display.max_columns', None)
 dataframe = pd.read_csv("data/breast-cancer/data.csv")
+dataframe["rnd"] = np.random.rand(len(dataframe))
+
+pearson = dataframe.corr()
+plt.imshow(pearson, )
+plt.show()
 
 y = dataframe["diagnosis"]
 x = dataframe.drop(["diagnosis", "id"], axis=1)

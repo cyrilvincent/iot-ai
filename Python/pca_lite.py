@@ -33,6 +33,7 @@ class PCALite:
 
 if __name__ == '__main__':
     x = list(range(30))
+    print(x)
     pca = PCALite(10, 5)
     r1 = pca.reduce1(x)
     print(r1)
