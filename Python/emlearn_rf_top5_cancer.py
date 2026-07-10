@@ -31,6 +31,8 @@ print(score_train, score_test)
 
 cmodel = emlearn.convert(model, method='inline')
 cmodel.save(file="data/breast-cancer/cancer_rf_top5_model.csv", name='rf', format='csv')
+np.savetxt('data/breast-cancer/scaler_top5_cancer_mean.csv',  scaler.mean_,  delimiter=',')
+np.savetxt('data/breast-cancer/scaler_top5_cancer_scale.csv', scaler.scale_, delimiter=',')
 
 
 

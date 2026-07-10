@@ -10,8 +10,8 @@ def load_csv_1d(f):
     return vals
 
 print("Loading scaler")
-scaler_mean  = load_csv_1d('scaler_cancer_mean.csv')
-scaler_scale = load_csv_1d('scaler_cancer_scale.csv')
+scaler_mean  = load_csv_1d('scaler_top5_cancer_mean.csv')
+scaler_scale = load_csv_1d('scaler_top5_cancer_scale.csv')
 
 nb_tree = 20
 max_nodes = 1000
