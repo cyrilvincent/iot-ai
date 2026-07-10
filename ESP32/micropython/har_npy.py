@@ -40,7 +40,7 @@ def main():
 
     model = emlearn_trees.new(10, 1000, 10)
     dataset = 'uci_har'
-    data_path = '2000-01-01T000051_jumpingjack.npy'
+    # data_path = '2000-01-01T000327_squat.npy'
     data_path = "har-10.npy"
     model_path = f'{dataset}.trees.csv'
     with open(model_path, 'r') as f:
