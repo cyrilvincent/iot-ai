@@ -30,11 +30,12 @@ model = tf.keras.Sequential([
 model.compile(loss="mse", optimizer="rmsprop", metrics=['accuracy'])
 model.summary()
 
-history = model.fit(xtrain, ytrain, epochs=10, batch_size=5, validation_data=(xtest, ytest))
+history = model.fit(xtrain, ytrain, epochs=10)
 eval = model.evaluate(xtrain, ytrain)
 print(eval)
-print(f"Total accuracy: {history.history['val_accuracy'][-1]*100:.1f}%")
+eval = model.evaluate(xtest, ytest)
+print(eval)
+print(f"Total accuracy: {history.history['accuracy'][-1]*100:.1f}%")
 
-model.save("data/heart/heart_mlp.h5")
 
 
