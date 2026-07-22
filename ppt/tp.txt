@@ -198,7 +198,7 @@ Créer tf_mlp_cancer.py en s'inspirant de sklearn_mlp_cancer.py
 Mettre des dropout
 Faire l'apprentissage et afficher les scores
 Enregistrer le modèle en .h5
-Convertir le modèle en .onnx avec to_to_onnx.py
+Convertir le modèle en .onnx avec h5_to_onnx.py
 
 TP 17 bis : TF RUL
 Effectuer une régression MLP sur RUL
