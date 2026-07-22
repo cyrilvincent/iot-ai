@@ -36,7 +36,6 @@ def load_images_from_directory(path):
     sep = '/'
 
     for filename in os.listdir(path):
-        # TODO: support standard image formats, like .bmp/.png/.jpeg
         if not filename.endswith('.bin'):
             continue
 

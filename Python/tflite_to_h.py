@@ -1,4 +1,4 @@
-name = "data/har/har_conv1d_int8.tflite"
+name = "data/breast-cancer/cancer_mlp_fp32.tflite"
 
 with open(name, "rb") as f:
     data = f.read()

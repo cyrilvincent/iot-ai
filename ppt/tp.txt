@@ -236,6 +236,7 @@ Compiler
 Exécuter sur ESP32
 
 TP 20 : TFLite MNIST 8
+tflite ne supporte pas les DropOut
 Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
 Sur RPI
 python tflite_rpi_mnist.py
@@ -264,11 +265,12 @@ Quantiser le h5 en tmdl avec les options suivantes
 En ligne de commande aller dans le répertoire tinymaix/tools
 python h5_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
 python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_mlp_int8.tflite ../../python/data/mnist/mnist_cnn_mlp_int8.tmdl int8 1 28,28,1 1
-Sur ESP32 copier le tmdl
+Sur ESP32 copier le tmdl et python/data/mnist/test_data
 Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonctionne encore assez mal
-Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
+Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D dans tf_cnn_mnist.py
 Refaire tourner le code : ca fonctionne très bien
-Utiliser la camera
+Tester emleanr_cnn_int8_mnist.py qui fait la même chose à partir de CSV
+Utiliser la camera : mnist_can_cnn.py
 
 TP 23 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer le shape d'input
@@ -310,9 +312,9 @@ Créer tf_har_rnn.py à partir de tf_har_conv1d.py en mettant des couches RNN
 C'est très lent et pas très précis
 Porter sur ESP32
 Créer tf_har_lstm.py : c'est beaucoup mieux
-Bonus
+Bonus :
 Convertir en .tflite puis .h en décommentant les lignes 28 à 32 de tf_har_tflite_to_h.py
-Ces commandes décommentées nécessitent des options de processeur plus complet et plus de RAM comme un STM32MP1
+Ces commandes décommentées nécessitent des options de processeur plus complets et plus de RAM comme un STM32MP1
 Cela ne fonctionnera donc pas sur ESP32
 
 TP27 : PVS

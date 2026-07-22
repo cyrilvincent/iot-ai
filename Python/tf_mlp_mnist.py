@@ -23,9 +23,7 @@ y_test = tf.keras.utils.to_categorical(y_test)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(400, activation="relu", input_shape=(x_train.shape[1],)),
-    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(200, activation="relu"),
-    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(10, activation="softmax"),
   ])
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
