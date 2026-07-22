@@ -32,7 +32,9 @@ ytest = tf.keras.utils.to_categorical(ytest, 2)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(20, activation="relu", input_shape=(x.shape[1],)),
+    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(10, activation="relu"),
+    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(2, activation="softmax")  # sigmoid not supported by tinymaix
   ])
 
@@ -45,8 +47,6 @@ print(eval)
 print(f"Total accuracy: {history.history['val_accuracy'][-1]*100:.1f}%")
 
 model.save("data/breast-cancer/cancer-mlp.h5")
-
-# model.save("data/breast-cancer/cancer_mlp.h5")
 
 # cd ../TinyMaix/tools
 # python h5_to_tflite.py ../../python/data/breast-cancer/cancer_mlp.h5 ../../python/data/breast-cancer/cancer_mlp.tflite 0

@@ -22,7 +22,7 @@ Sauvegarder votre workspace : save workspace as
 Lire le fichier platformio.ini
 Dans la barre du bas vous pouvez sélectionner Default : le projet à compiler
 Sélectionner la prise (en haut à droite ou en bas) la prise = serial monitor
-Executer le projet, c'est l'équivalent du blink
+Exécuter le projet, c'est l'équivalent du blink
 Refaire pareil avec le dossier ESP32/C/test_esp32 qui porte le code sur ESP32 avec le framework Arduino
 Refaire pareil avec le dossier ESP32/C/test_esp-idf qui porte le code sur ESP32 avec le framework ESP IDF (Très lent au départ : 5 minutes ++)
 
@@ -210,46 +210,52 @@ Tester avec tf_test_gpu.py
 Refaire tourner le TP 17 qui devrait aller + vite
 Créer tf_mlp_mnist.py qui effectue une catégorisation
 Une normalisation x /= 255
-ytrain=keras.utils.to_categorical(ytrain, 2) ce qui transformera [0, 1] en [[1, 0],[0, 1]]
+ytrain=keras.utils.to_categorical(ytrain)
 Idem pour xtest
-10 sorties avec un softmax comme fonction d'activation
-loss="categorical_crossentropy" dans la compilation
-Enregistrer le modèle en .h5
+Mettre 10 sorties avec un softmax comme fonction d'activation
+Mettre loss="categorical_crossentropy" dans la compilation
+Enregistrer le modèle en .h5 après apprentissage
 Faire l'apprentissage et afficher les scores
 Sauvegarder le .h5
 
 TP 19 : TFLite Cancer
-Transformer le H5 en tflite : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_fp32.tflite 0
+Transformer le H5 en tflite
+h5_to_tflite.py se trouve dans le répertoire TinyMaix/tools
+python h5_to_tflite.py ../../python/data/breast-cancer/cancer_mlp.h5 ../../python/data/breast-cancer/cancer_mlp_fp32.tflite 0
+Accéder au Raspberry Pi via la commande ssh pi@192.168.3.62, le login est pi et le password est raspberrypi
+Découvrir les répertoires avec ls -l
+Activer python avec source venv/bin/activate
+cd iot-ai/Python
+Vérifier si le fichier tflite est présent
+python tflite_rpi_cancer.py
+Bonus :
 Convertir le .tflite en .h avec tflite_to_h.py en adaptant le chemin des fichiers
 Ajouter le projet cancer_mlp dans le workspace platformio
 Copier les .h générés par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
-Accéder au Raspberry Pi via la commande ssh pi@192.168.3.59, le login est pi et le password est raspberrypi
-Découvrir les répartoires avec ls -l
-Activer python avec source venv/bin/activate
-cd iot-ai/Python
-python tflite_rpi_cancer.py
 
 TP 20 : TFLite MNIST 8
 Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
+Sur RPI
+python tflite_rpi_mnist.py
+Bonus :
 Convertir le .tflite en .h avec tflite_to_h.py en adaptant le chemin des fichiers
 Ajouter le projet mnist_mlp_8 dans le workspace platformio
 Copier le .h généré par Python dans PlatformIO dans le répertoire include
 Compiler
 Exécuter sur ESP32
-Sur RPI
-python tflite_rpi_mnist.py
 
-TP 21 : TinyMaix Cancer
+TP 21 : TinyMaix Cancer & MNIST
 Dans un invité de commande aller dans TinyMaix : cd ../TinyMaix/tools
 Créer le .tmdl 32 bits : python tflite2tmdl.py ../../python/data/breast-cancer/cancer_mlp.tflite ../../python/data/breast-cancer/cancer_mlp.tmdl fp32 0 30 1
-Reinstaller MicroPython via Thonny
+Reinstaller MicroPython via Thonny si nécessaire
 Copier le tmdl sur ESP32
 Copier  lib/xtensawin_6.3/emlearn_cnn_*.mpy sur ESP32
 Faire tourner emlearn_mlp_cancer.py sur ESP32
-Quantiser les données avec python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 1 784 1
-Executer emlearn_mlp_mnist.py sur ESP32 après avoir transférer le tmdl (ca fonctionne assez mal)
+Bonus : MNIST
+Quantiser le modèle MNIST avec python tflite2tmdl.py ../../python/data/mnist/mnist_mlp_int8.tflite ../../python/data/mnist/mnist_mlp_int8.tmdl int8 1 784 1
+Exécuter emlearn_mlp_mnist.py sur ESP32 après avoir transférer le tmdl (ca fonctionne assez mal)
 
 TP 22 : CNN
 Exécuter et comprendre tf_cnn_mlp_mnist.py
@@ -263,25 +269,24 @@ Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonction
 Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D
 Refaire tourner le code : ca fonctionne très bien
 Utiliser la camera
-Bonus : Faire la prédiction sur 
 
 TP 23 : CIFAR10 & Alexnet
-Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer la shape d'input
+Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer le shape d'input
 Ouvrir et comprendre data/cifar10/img_to_bin32.py
 Quantiser le TMDL
 Dans ESP32
 Copier le TMDL et les *.bin sur l'ESP32
-Executer CIFAR10.py
+Exécuter CIFAR10.py
 Bonus : faire pareil pour ImageNet
 Bonus : utiliser la camera
 
 TP 24 : MobileNet & TeachableMachine Dogs vs Cats
-Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 99% de la mémoire
+Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 95% de la mémoire
 cats_vs_dogs_mobilenet.py est une version allégée
 L'apprentissage dure 2h et donne le fichier data/mobilenetv1/cats_vs_dogs.h5
 Etudier le .h5 dans Netron
 Quantiser le TMDL
-Executer sur ESP32 mobilenet_cats_dogs.py
+Exécuter sur ESP32 mobilenet_cats_dogs.py
 Créer un modèle à partir de data/dogs-vs-cats sur the TeachableMachine
 
 TP 25 : HAR CNN
@@ -292,7 +297,7 @@ Etudier les images de quantisation du répertoire quant générées par har_csv_
 TP 26 : HAR Conv1d + RNN + LSTM
 Entrainer tf_har_conv1d.py
 Il est impossible d'utiliser h5_to_tflite sur des séries temporelles à cause de la quantisation
-Modifier et executer tf_har_to_tflite.py pour transformer le .h5 en .tflite
+Modifier et Exécuter tf_har_to_tflite.py pour transformer le .h5 en .tflite
 Transformer le .tflite en .h avec tflite_to_h
 Sur VSCode ajouter le projet har_rnn
 Noter l'ajout d'un filesystem dans le platformio.ini
@@ -301,34 +306,35 @@ Vous pouvez créer votre propre csv en convertissant votre Accelerometer.csv ave
 Créer le filesystem avec la commande suivante dans un terminal powershell "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe" run -t uploadfs
 Vérifier les données du scaler
 Compiler et exécuter sur ESP32 pour les 100 première lignes du CSV soit 0.1s
-Bonus : Exécuter sour tous les CSV
 Créer tf_har_rnn.py à partir de tf_har_conv1d.py en mettant des couches RNN
 C'est très lent et pas très précis
 Porter sur ESP32
 Créer tf_har_lstm.py : c'est beaucoup mieux
+Bonus
 Convertir en .tflite puis .h en décommentant les lignes 28 à 32 de tf_har_tflite_to_h.py
-Ces commandes décommentés nécessite des options de processeur plus complet et plus de RAM comme un STM32MP1
+Ces commandes décommentées nécessitent des options de processeur plus complet et plus de RAM comme un STM32MP1
 Cela ne fonctionnera donc pas sur ESP32
 
 TP27 : PVS
 Télécharger le dataset de 40 Go : https://www.kaggle.com/datasets/jefmenegazzo/pvs-passive-vehicular-sensors-datasets
 Inspecter attentivement tf_pvs_to_pkl.py
-Executer tf_pvs_to_pkl.py
+Exécuter tf_pvs_to_pkl.py
 Inspecter tf_pvs.py
-Executer tf_pvs.py
-Bonus : Créer une inférence sur RPI et/ou sur ESP32
+Exécuter tf_pvs.py
+Bonus : Créer une inférence sur RPI
 
 TP 28 : PyTorch
 Rejouer la démo cancer
 Porter MNIST MLP en Torch
 Ajouter TQDM pour afficher la progression
+Bonus :
 Installer CUDA 12.1, inspecter la variable d'environnement PATH
-Porter un modèle CNN en GPU
-Executer torchvision_resnet sur des images téléchargées
+Porter un modèle Tensorflow CNN en GPU
+Exécuter torchvision_resnet sur des images téléchargées
 Créer torchvision_mobilenet
 
 TP 29 : LiteRT-Torch
-Executer pth_to_onnx pour créer le .onnx
+Exécuter pth_to_onnx pour créer le .onnx
 Ouvrir le ONNX dans Netron
 Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
 Nous allons utiliser une méthode plus moderne : litert-torch
@@ -337,7 +343,7 @@ Installer Docker Desktop
 Ouvrir docker-compose.yml
 Installer l'image Python : docker pull python:3.10.1
 Ouvrir docker-compose.yml
-Comment les lignes liés à vitis-ai
+Commenter les lignes liés à vitis-ai
 Démarrer le docker : docker compose up -d
 Aller dans docker desktop et chercher le docker python-310 et cliquer dessus
 Aller dans l'onglet Exec : vous êtes dans le docker python sous Linux
@@ -345,8 +351,8 @@ bash
 ls
 pip install numpy==1.26.4
 pip install scikit-learn==1.7.2
-pip install pandas==2.3.3
-pip install torch litert_torch
+
+pip install pandas==2.3.3pip install torch litert_torch
 Examiner pth_to_tflite.py
 python pth_to_tflite.py
 
@@ -379,7 +385,7 @@ On ne va pas aller plus loin, c'est beaucoup trop lent et peu pratique sur Windo
 Il existe des images NXP toutes prêtes sur le site de NXP mais il faut le véritable hardware
 
 TP 32 : HLS4ML
-Executer hls_cancer.py après avoir installé les dépendances
+Exécuter hls_cancer.py après avoir installé les dépendances
 Inspecter le code C++ généré
 Tester la quantisation
 Faire de même sur MNIST en CNN

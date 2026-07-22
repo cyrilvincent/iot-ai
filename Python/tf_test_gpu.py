@@ -1,5 +1,7 @@
 import tensorflow as tf
-import subprocess
+import os
+
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 print("==== TensorFlow ====")
 print("Version TF :", tf.__version__)
