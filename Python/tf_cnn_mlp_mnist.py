@@ -23,17 +23,17 @@ x_test = x_test.reshape(x_test.shape[0], 28,28,1)
 
 # A Porter avec le CNN de demo_tf_cnn_mnist
 model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2), input_shape=(28, 28, 1), padding="same")) # 28,28,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(1, 1), input_shape=(28, 28, 1), padding="same")) # 28,28,16
 model.add(tf.keras.layers.Activation('relu'))
-# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16 remplacé par stride 2
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16 remplacé par stride 2
 
-model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2)))  # 10,10,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(1, 1)))  # 10,10,16
 model.add(tf.keras.layers.Activation('relu'))
-# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
 
-model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2)))  # 4,4,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(1, 1)))  # 4,4,16
 model.add(tf.keras.layers.Activation('relu'))
-# model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 2,2,16
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 2,2,16
 
 #Dense
 model.add(tf.keras.layers.Flatten()) # 64

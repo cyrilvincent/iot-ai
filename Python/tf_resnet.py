@@ -1,5 +1,5 @@
-from keras.preprocessing.image import load_img
-from keras.preprocessing.image import img_to_array
+from keras.utils import load_img
+from keras.utils import img_to_array
 from keras.applications.resnet_v2 import preprocess_input
 from keras.applications.resnet_v2 import decode_predictions
 from keras.applications.resnet_v2 import ResNet50V2

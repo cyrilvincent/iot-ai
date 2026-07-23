@@ -336,9 +336,6 @@ Exécuter torchvision_resnet sur des images téléchargées
 Créer torchvision_mobilenet
 
 TP 29 : LiteRT-Torch
-Exécuter pth_to_onnx pour créer le .onnx
-Ouvrir le ONNX dans Netron
-Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
 Nous allons utiliser une méthode plus moderne : litert-torch
 litert-torch ne fonctionne pas sur Windows
 Installer Docker Desktop
@@ -353,10 +350,13 @@ bash
 ls
 pip install numpy==1.26.4
 pip install scikit-learn==1.7.2
-
 pip install pandas==2.3.3pip install torch litert_torch
 Examiner pth_to_tflite.py
 python pth_to_tflite.py
+Bonus ONNX
+Exécuter pth_to_onnx pour créer le .onnx
+Ouvrir le ONNX dans Netron
+Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
 
 TP 30 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
