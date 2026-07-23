@@ -107,7 +107,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 
 history = model.fit(
     xtrain_scaled, ytrain,
-    epochs=15,
+    epochs=10,
     batch_size=32,
     validation_data=(xtest_scaled, ytest)
 )
