@@ -13,7 +13,7 @@ print('Loading data ...')
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
-dir = "data/pvs"
+dir = ""
 
 segments = []
 for i in range(1, 10):
