@@ -291,11 +291,6 @@ Quantiser le TMDL
 Exécuter sur ESP32 mobilenet_cats_dogs.py
 Créer un modèle à partir de data/dogs-vs-cats sur the TeachableMachine
 
-TP 25 : HAR CNN
-Etudier tf_cnn_har.py qui est le modèle pour adapter HAR en CNN
-Pourquoi la shape est de 16*24*1 ?
-Etudier les images de quantisation du répertoire quant générées par har_csv_to_jpg.py
-
 TP 26 : HAR Conv1d + RNN + LSTM
 Entrainer tf_har_conv1d.py
 Il est impossible d'utiliser h5_to_tflite sur des séries temporelles à cause de la quantisation
@@ -336,7 +331,6 @@ Exécuter torchvision_resnet sur des images téléchargées
 Créer torchvision_mobilenet
 
 TP 29 : LiteRT-Torch
-Nous allons utiliser une méthode plus moderne : litert-torch
 litert-torch ne fonctionne pas sur Windows
 Installer Docker Desktop
 Ouvrir docker-compose.yml
@@ -350,13 +344,14 @@ bash
 ls
 pip install numpy==1.26.4
 pip install scikit-learn==1.7.2
-pip install pandas==2.3.3pip install torch litert_torch
+pip install pandas==2.3.3
+pip install torch litert_torch: 1h30
 Examiner pth_to_tflite.py
 python pth_to_tflite.py
 Bonus ONNX
-Exécuter pth_to_onnx pour créer le .onnx
+Sur Windows exécuter pth_to_onnx pour créer le .onnx
 Ouvrir le ONNX dans Netron
-Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté
+Le script onnx_to_keras ne fonctionne pas car keras 3 n'est pas supporté avec notre version de TF
 
 TP 30 : ExecuTorch XNNPack
 Ouvrir le .pth du cancer dans Netron
@@ -366,10 +361,10 @@ Ouvrir le .pte généré dans Netron
 Ouvrir pth_to_int8_pte.py pour comprendre la quantisation XNNPack
 Convertir le .pth en .pte int8
 Ouvrir le .pte généré dans Netron
-Tester l'inférence XNNPack avec xnn_cancer_predict.py
+Tester l'inférence XNNPack avec torch_xnn_cancer_predict.py
 Porter le .pth de MNIST en .pte int8
 
-TP 31 : NXP
+TP 31 Facultatif : NXP
 Install qemu depuis qemu.org
 Dezipper drivers/quemu/imx_qemu_ready.zip à la racine de c:\progammes\qemu
 Ce zip contient l'image d'un NXP freescale_imx8mpevk qui correspond au NXP i.MX plus et a nécessité 1h30 de compilation à l'aide de build.sh sous WSL2 Ubuntu
@@ -401,7 +396,6 @@ Exécuter le hls_cancer.py
 Quantiser hls_cancer
 Faire de même pour MNIST
 Faire de même pour un .pth
-Bonus: Tester HGQ2
 
 TP 33 : Vitis AI
 Quantiser le MLP Cancer ONNX avec le script quark_cancer.py

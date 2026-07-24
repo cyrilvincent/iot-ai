@@ -3,6 +3,10 @@ import sklearn.preprocessing as pp
 import pandas as pd
 # noinspection PyUnresolvedReference
 from executorch.extension.pybindings.portable_lib import _load_for_executorch
+import executorch
+import os
+
+
 
 dataframe = pd.read_csv("data/breast-cancer/data.csv", index_col="id")
 y = dataframe.diagnosis

@@ -1,17 +1,17 @@
 version: "3.8"
 
 services:
-#  vitis-ai:
-#    image: amdih/vitis-ai:versal-2ve-release_v6.2_0612
-#    container_name: vitis-ai
-#    tty: true
-#    stdin_open: true
-#    volumes:
-#      - .:/workspace
-#    working_dir: /workspace
-#    environment:
-#      - USER=root
-#    command: /bin/bash
+  vitis-ai:
+    image: amdih/vitis-ai:versal-2ve-release_v6.2_0612
+    container_name: vitis-ai
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    environment:
+      - USER=root
+    command: /bin/bash
 
   python-310:
     image: python:3.10.1

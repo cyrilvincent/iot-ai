@@ -45,9 +45,6 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(TensorDataset(xtrain_t, ytrain_t), batch_size=5, shuffle=True)
 
-
-
-
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = MLP(x.shape[1]).to(device)
     print(model)
