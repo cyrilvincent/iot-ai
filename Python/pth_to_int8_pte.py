@@ -24,7 +24,7 @@ quantizer.set_global(get_symmetric_quantization_config())
 m = prepare_pt2e(m, quantizer)
 with torch.no_grad():
     for _ in range(200):
-        m(shape)
+        m(shape[0])
 m = convert_pt2e(m)
 
 et_program = to_edge_transform_and_lower(
