@@ -38,8 +38,19 @@ with open("cifar10_q.tmdl", 'rb') as f:
 model = emlearn_cnn.new(model_data)
 out_length = model.output_dimensions()[0]
 
-raw = load_img("dog-32.bin") # Cat=3
+raw = load_img("cat-32.bin") # Cat=3
 predicted = predict(raw)
 print(predicted)
+
+# 0 : airplane (avion)
+# 1 : automobile (voiture)
+# 2 : bird (oiseau)
+# 3 : cat (chat)
+# 4 : deer (cerf)
+# 5 : dog (chien)
+# 6 : frog (grenouille)
+# 7 : horse (cheval)
+# 8 : ship (navire / bateau)
+# 9 : truck (camion)
 
 

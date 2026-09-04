@@ -44,7 +44,7 @@ model.summary()
 
 hist = model.fit(x=x_train, y=y_train, epochs=10, batch_size=128, verbose=1, validation_data=(x_test, y_test), shuffle=True)
 
-model.save('data/mnist/mnist_cnn.h5') # 97.5%
+model.save('data/mnist/mnist_cnn.h5') # 98.5%
 
 # python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_fp32.tflite 0
 # python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_fp32.tflite ../../python/data/mnist/mnist_cnn_fp32.tmdl fp32 0 28,28,1 1

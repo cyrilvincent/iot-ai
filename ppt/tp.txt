@@ -88,8 +88,8 @@ Ouvrir et exécuter camera_test_*.py en fonction du type de votre camera qui est
 
 TP 9 : kNN Micropython
 Examiner le fichier esp32/lib/knn_lite.py : il s'agit d'une implémentation d'une prédiction kNN
-Copier knn_lite.py sur ESP32
-Copier les normalisations CSV sur ESP32
+Copier knn_lite.py sur ESP32 via Thonny
+Copier les normalisations CSV sur ESP32 via Thonny
 Refaire tourner la démo knn_heart.py
 Créer knn_cancer.py 
 
@@ -220,7 +220,9 @@ Sauvegarder le .h5
 
 TP 19 : TFLite Cancer
 Transformer le H5 en tflite
-h5_to_tflite.py se trouve dans le répertoire TinyMaix/tools
+Ouvrir un CLI depuis Pycharm
+Aller dans le répertoire de TinyMaix avec cd ../TinyMaix/Tools
+h5_to_tflite.py se trouve dans le répertoire TinyMaix/Tools
 python h5_to_tflite.py ../../python/data/breast-cancer/cancer_mlp.h5 ../../python/data/breast-cancer/cancer_mlp_fp32.tflite 0
 Accéder au Raspberry Pi via la commande ssh pi@192.168.3.62, le login est pi et le password est raspberrypi
 Découvrir les répertoires avec ls -l
@@ -237,7 +239,7 @@ Exécuter sur ESP32
 
 TP 20 : TFLite MNIST 8
 tflite ne supporte pas les DropOut
-Créer un tflite quantiser int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
+Créer un tflite avec une quantisation int8 : python h5_to_tflite.py ../../python/data/mnist/mnist_mlp.h5 ../../python/data/mnist/mnist_mlp_int8.tflite 1 quant_img_mnist/ 0to1
 Sur RPI
 python tflite_rpi_mnist.py
 Bonus :
@@ -259,18 +261,15 @@ Quantiser le modèle MNIST avec python tflite2tmdl.py ../../python/data/mnist/mn
 Exécuter emlearn_mlp_mnist.py sur ESP32 après avoir transférer le tmdl (ca fonctionne assez mal)
 
 TP 22 : CNN
-Exécuter et comprendre tf_cnn_mlp_mnist.py
+Exécuter et comprendre tf_cnn_mnist.py
 Calculer le poids du modèle en 8 bits sachant que tensorflow ajouter toujours 1 input à chaque neurone
 Quantiser le h5 en tmdl avec les options suivantes
 En ligne de commande aller dans le répertoire tinymaix/tools
-python h5_to_tflite.py ../../python/data/mnist/mnist_cnn_mlp.h5 ../../python/data/mnist/mnist_cnn_mlp_int8.tflite 1 quant_img_mnist/ 0to1
-python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_mlp_int8.tflite ../../python/data/mnist/mnist_cnn_mlp_int8.tmdl int8 1 28,28,1 1
-Sur ESP32 copier le tmdl et python/data/mnist/test_data
-Adapter le nom du tmdl dans emlearn_cnn_int8_mnist.py et l'exécuter ca fonctionne encore assez mal
-Adapter le code Python pour enlever la partie hidden MLP et la remplacer par un GlobalAverage2D dans tf_cnn_mnist.py
-Refaire tourner le code : ca fonctionne très bien
-Tester emleanr_cnn_int8_mnist.py qui fait la même chose à partir de CSV
-Utiliser la camera : mnist_can_cnn.py
+python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_int8.tflite 1 quant_img_mnist/ 0to1
+python tflite2tmdl.py ../../python/data/mnist/mnist_cnn_int8.tflite ../../python/data/mnist/mnist_cnn_int8.tmdl int8 1 28,28,1 1
+Sur ESP32 copier le tmdl et python/data/mnist/csv
+Tester emlearn_cnn_int8_mnist.py
+Utiliser la camera : mnist_cam_cnn.py
 
 TP 23 : CIFAR10 & Alexnet
 Ouvrir data/cifar10/cifar10_q.tflite dans Netron et récupérer le shape d'input
@@ -279,12 +278,9 @@ Quantiser le TMDL
 Dans ESP32
 Copier le TMDL et les *.bin sur l'ESP32
 Exécuter CIFAR10.py
-Bonus : faire pareil pour ImageNet
-Bonus : utiliser la camera
 
 TP 24 : MobileNet & TeachableMachine Dogs vs Cats
-Etudier cats_vs_dogs_mobilnet_original.py : il s'agit de la topologie originale de MobileNetV1, ce réseau fait 3.2Mo et fonctionne sur ESP32 mais prends 95% de la mémoire
-cats_vs_dogs_mobilenet.py est une version allégée
+cats_vs_dogs_mobilenet.py est une version allégée de MobileNetV1 qui utilise 96x96 en entrée au lieu de 224x224, ca le réseau originel fait 3.2Mo
 L'apprentissage dure 2h et donne le fichier data/mobilenetv1/cats_vs_dogs.h5
 Etudier le .h5 dans Netron
 Quantiser le TMDL
@@ -300,7 +296,7 @@ Sur VSCode ajouter le projet har_rnn
 Noter l'ajout d'un filesystem dans le platformio.ini
 Mettre python/data/accelerometer_rnn.csv dans har_rnn/data
 Vous pouvez créer votre propre csv en convertissant votre Accelerometer.csv avec python/data/har/convert_accelerometer.py
-Créer le filesystem avec la commande suivante dans un terminal powershell "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe" run -t uploadfs
+Créer le filesystem avec la commande suivante dans un terminal powershell : & "$env:USERPROFILE\.platformio\penv\Scripts\pio.exe" run -t uploadfs
 Vérifier les données du scaler
 Compiler et exécuter sur ESP32 pour les 100 première lignes du CSV soit 0.1s
 Créer tf_har_rnn.py à partir de tf_har_conv1d.py en mettant des couches RNN
@@ -368,7 +364,7 @@ TP 31 Facultatif : NXP
 Install qemu depuis qemu.org
 Dezipper drivers/quemu/imx_qemu_ready.zip à la racine de c:\progammes\qemu
 Ce zip contient l'image d'un NXP freescale_imx8mpevk qui correspond au NXP i.MX plus et a nécessité 1h30 de compilation à l'aide de build.sh sous WSL2 Ubuntu
-Redimensionner l'image de la sdcard : qemu-img.exe resize sdcard.img 256M
+Redimensionner l'image de la sdcard (en admin) : qemu-img.exe resize sdcard.img 256M
 Démarrer qemu avec :
 qemu-system-aarch64.exe -M imx8mp-evk -smp 4 -m 3G ^
   -display none -serial null -serial stdio ^
@@ -399,6 +395,7 @@ Faire de même pour un .pth
 
 TP 33 : Vitis AI
 Quantiser le MLP Cancer ONNX avec le script quark_cancer.py
+Executer python vitis_cancer.py
 Installer l'image docker de Xilinx Vitis AI : docker pull amdih/vitis-ai:versal-2ve-release_v6.2_0612
 	Ca prends beaucoup de RAM et de temps
 Ouvrir le docker-compose.yml

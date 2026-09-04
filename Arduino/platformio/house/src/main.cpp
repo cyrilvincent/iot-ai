@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 float f(float x) {
-    return 41.635 * x -311;
+    return 41.635 * x - 311;
 }
 
 void setup() {

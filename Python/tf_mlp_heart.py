@@ -11,31 +11,35 @@ df = pd.read_csv('data/heart/data_cleaned_up.csv')
 x = df.drop('num', axis=1)
 y = df['num'].values
 
-xtrain, xtest, ytrain, ytest = ms.train_test_split(x, y, train_size=0.8, test_size=0.2)
+xtrain, xtest, ytrain, ytest = ms.train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=42)
 
 scaler = pp.StandardScaler()
 scaler.fit(x)
 xtrain = scaler.transform(xtrain)
 xtest = scaler.transform(xtest)
 
-# ytrain = tf.keras.utils.to_categorical(ytrain)
-# ytest = tf.keras.utils.to_categorical(ytest)
+ytrain = tf.keras.utils.to_categorical(ytrain)
+ytest = tf.keras.utils.to_categorical(ytest)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(20, activation="relu", input_shape=(x.shape[1],)),
+    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(10, activation="relu"),
-    tf.keras.layers.Dense(1, activation="relu")  # sigmoid not supported by tinymaix
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(2, activation="softmax")  # sigmoid not supported by tinymaix
   ])
 
-model.compile(loss="mse", optimizer="rmsprop", metrics=['accuracy'])
+model.compile(loss="categorical_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
 model.summary()
 
-history = model.fit(xtrain, ytrain, epochs=10)
+history = model.fit(xtrain, ytrain, epochs=10, validation_split=0.2)
 eval = model.evaluate(xtrain, ytrain)
 print(eval)
 eval = model.evaluate(xtest, ytest)
 print(eval)
 print(f"Total accuracy: {history.history['accuracy'][-1]*100:.1f}%")
+
+model.save("data/heart/heart_mlp.h5")
 
 
 

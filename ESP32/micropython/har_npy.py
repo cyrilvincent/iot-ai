@@ -1,10 +1,8 @@
-
-import array
-
 import zipfile
 import npyfile
-import emlearn_trees
 import timebased
+import array
+import emlearn_trees
 
 def argmax(arr):
     idx_max = 0

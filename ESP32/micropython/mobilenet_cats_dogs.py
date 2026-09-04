@@ -38,7 +38,7 @@ with open("mobilenet_int8.tmdl", 'rb') as f:
 model = emlearn_cnn.new(model_data)
 out_length = model.output_dimensions()[0]
 
-raw = load_img("cat-96.bin")  
+raw = load_img("dog-96.bin")  
 predicted = predict(raw)
 print(predicted)
 

@@ -32,9 +32,7 @@ ytest = tf.keras.utils.to_categorical(ytest, 2)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(20, activation="relu", input_shape=(x.shape[1],)),
-    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(10, activation="relu"),
-    tf.keras.layers.Dropout(0.2),
     tf.keras.layers.Dense(2, activation="softmax")  # sigmoid not supported by tinymaix
   ])
 
