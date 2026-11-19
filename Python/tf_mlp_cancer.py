@@ -27,8 +27,7 @@ xtest = scaler.transform(xtest)
 #     max_str = ", ".join(f"{v:.6f}f" for v in scaler.data_max_)
 #     f.write(f"const float SCALER_MAX[30] = {{{max_str}}};\n\n")
 
-ytrain = tf.keras.utils.to_categorical(ytrain, 2)
-ytest = tf.keras.utils.to_categorical(ytest, 2)
+ytrain = tf.keras.utils.to_categorical(ytrain) # ytrain before shape=(530), after = (530,2)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(20, activation="relu", input_shape=(x.shape[1],)),
@@ -39,10 +38,10 @@ model = tf.keras.Sequential([
 model.compile(loss="categorical_crossentropy", optimizer="rmsprop", metrics=['accuracy'])
 model.summary()
 
-history = model.fit(xtrain, ytrain, epochs=10, batch_size=10, validation_data=(xtest, ytest) )
+history = model.fit(xtrain, ytrain, epochs=10, batch_size=10, validation_split=0.2 )
 eval = model.evaluate(xtrain, ytrain)
 print(eval)
-print(f"Total accuracy: {history.history['val_accuracy'][-1]*100:.1f}%")
+# print(f"Total accuracy: {history.history['val_accuracy'][-1]*100:.1f}%")
 
 model.save("data/breast-cancer/cancer-mlp.h5")
 

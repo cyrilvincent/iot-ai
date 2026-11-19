@@ -36,7 +36,7 @@ void loop() {
   for (int i = 0; i < 30; i++) {
     float center = pgm_read_float(&CENTER[i]);
     float scale  = pgm_read_float(&SCALE[i]);
-    float scaled = (SAMPLE_RAW[i] - center) / scale;
+    float scaled = (SAMPLE_RAW[i] - center) / scale / 3;
     // Clamp vers int16 [-32768, 32767]
     scaled = constrain(scaled * 1000.0f, -32768.0f, 32767.0f);
     features[i] = (int16_t)scaled;

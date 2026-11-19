@@ -13,9 +13,9 @@ print("Loading scaler")
 scaler_mean  = load_csv_1d('scaler_mean.csv')
 scaler_scale = load_csv_1d('scaler_scale.csv')
 
-nb_tree = 3
-max_nodes = 50
-features = 2
+nb_tree = 100
+max_nodes = 5000
+features = 10
 model = emlearn_trees.new(nb_tree, max_nodes, features)
 
 print("Loading model")
@@ -26,7 +26,7 @@ print("Loaded")
 def normalize(row):
     print("Normalize")
     return array.array('h', [
-        int(((row[i] - scaler_mean[i]) / scaler_scale[i]) * 32767)
+        int(((row[i] - scaler_mean[i]) / scaler_scale[i]) * 32767 / 3) # 3*std = 99.9% des data
         for i in range(len(row))
     ])    
         

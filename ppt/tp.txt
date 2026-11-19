@@ -262,7 +262,6 @@ Exécuter emlearn_mlp_mnist.py sur ESP32 après avoir transférer le tmdl (ca fo
 
 TP 22 : CNN
 Exécuter et comprendre tf_cnn_mnist.py
-Calculer le poids du modèle en 8 bits sachant que tensorflow ajouter toujours 1 input à chaque neurone
 Quantiser le h5 en tmdl avec les options suivantes
 En ligne de commande aller dans le répertoire tinymaix/tools
 python h5_to_tflite.py ../../python/data/mnist/mnist_cnn.h5 ../../python/data/mnist/mnist_cnn_int8.tflite 1 quant_img_mnist/ 0to1

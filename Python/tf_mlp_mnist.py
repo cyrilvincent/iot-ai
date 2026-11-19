@@ -23,11 +23,15 @@ y_test = tf.keras.utils.to_categorical(y_test)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(400, activation="relu", input_shape=(x_train.shape[1],)),
+    tf.keras.layers.Dropout(0.5),
+    tf.keras.layers.Dense(300, activation="relu"),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(200, activation="relu"),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(10, activation="softmax"),
   ])
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'], optimizer="sgd")
-trained = model.fit(x_train, y_train, epochs=5, batch_size=10, validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=50, batch_size=10, validation_data=(x_test, y_test))
 print(model.summary())
 
 model.save("data/mnist/mnist_mlp.h5")

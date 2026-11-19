@@ -88,6 +88,10 @@ class MLP:
 
 
 if __name__ == '__main__':
+    p1 = Perceptron("p1",[0.5, 1])
+    p1.propagation([0.2,0.4])
+    print(p1)
+    print(p1.output)
     il = Layer("IL")
     for i in range(10):
         il.perceptrons.append(Perceptron(f"I{i}", [1]))

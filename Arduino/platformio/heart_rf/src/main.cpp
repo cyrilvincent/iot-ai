@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "heart_rf_model.h"   // généré par emlearn
 
-// Scaler RobustScaler : x_scaled = (x - center) / scale
+// Scaler StandardScaler : x_scaled = (x - center) / scale
 // Valeurs issues du print Python, à remplacer par les vraies
 const float CENTER[30] PROGMEM = {
   47.7500, 0.7115, 2.9519, 132.0481, 249.6010, 0.0673, 0.2548, 140.3510, 0.2885, 0.5736
