@@ -5,8 +5,7 @@ HLSConfig:
   Model:
     BitExact: null
     BramFactor: 1000000000
-    Precision:
-      default: fixed<16,6>
+    Precision: fixed<8,2>
     ReuseFactor: 1
     Strategy: Latency
     TraceOutput: false
@@ -23,7 +22,7 @@ OutputShapes:
   - 2
 Part: xcvu13p-flga2577-2-e
 ProjectName: myproject
-Stamp: 9b88b712
+Stamp: b017c7c6
 Version: 1.0.0
 WriterConfig:
   Namespace: null
