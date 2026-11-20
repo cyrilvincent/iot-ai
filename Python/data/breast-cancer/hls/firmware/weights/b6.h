@@ -9,7 +9,7 @@
 #ifndef __SYNTHESIS__
 model_default_t b6[2];
 #else
-model_default_t b6[2] = {0.271027, -0.271027};
+model_default_t b6[2] = {0.2710273862, -0.2710273862};
 
 #endif
 

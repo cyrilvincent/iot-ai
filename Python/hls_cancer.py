@@ -21,7 +21,7 @@ config = hls4ml.utils.config_from_keras_model(model)
 # config = hls4ml.utils.config_from_pytorch_model()
 
 # Quantisation globale
-config['Model']['Precision'] = 'fixed<8,2>' # 16, 6 par défaut
+config['Model']['Precision'] = 'fixed<10,0>' # 16, 6 par défaut
 
 # Quantisation par layer
 # config['LayerName']['dense']['Precision']['weight']     = 'fixed<8,2>'

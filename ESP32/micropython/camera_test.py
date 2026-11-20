@@ -8,3 +8,4 @@ cam.init()
 img = cam.capture()
 with open("cam.jpg", "wb") as f:
    f.write(img)
+cam.deinit()

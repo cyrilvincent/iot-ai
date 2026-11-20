@@ -14,19 +14,19 @@
 // hls-fpga-machine-learning insert numbers
 
 // hls-fpga-machine-learning insert layer-precision
-typedef ap_fixed<8,2> input_t;
-typedef ap_fixed<8,2> model_default_t;
-typedef ap_fixed<8,2> layer2_t;
+typedef ap_fixed<10,0> input_t;
+typedef ap_fixed<10,0> model_default_t;
+typedef ap_fixed<10,0> layer2_t;
 typedef ap_uint<1> layer2_index;
-typedef ap_fixed<8,2> layer3_t;
+typedef ap_fixed<10,0> layer3_t;
 typedef ap_fixed<18,8> dense_relu_table_t;
-typedef ap_fixed<8,2> layer4_t;
+typedef ap_fixed<10,0> layer4_t;
 typedef ap_uint<1> layer4_index;
-typedef ap_fixed<8,2> layer5_t;
+typedef ap_fixed<10,0> layer5_t;
 typedef ap_fixed<18,8> dense_1_relu_table_t;
-typedef ap_fixed<8,2> layer6_t;
+typedef ap_fixed<10,0> layer6_t;
 typedef ap_uint<1> layer6_index;
-typedef ap_fixed<8,2> result_t;
+typedef ap_fixed<10,0> result_t;
 typedef ap_fixed<18,8> dense_2_softmax_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> dense_2_softmax_exp_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> dense_2_softmax_inv_table_t;

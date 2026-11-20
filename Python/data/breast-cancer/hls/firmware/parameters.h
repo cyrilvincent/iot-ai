@@ -111,8 +111,8 @@ struct softmax_config7 : nnet::activ_config {
     static const unsigned n_outer = 1;
     static const unsigned n_inner = 1;
     static const unsigned parallelization_factor = -1;
-    static const unsigned exp_table_size = 128;
-    static const unsigned inv_table_size = 256;
+    static const unsigned exp_table_size = 512;
+    static const unsigned inv_table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned reuse_factor = 1;
     static const unsigned axis = -1;
@@ -122,7 +122,7 @@ struct softmax_config7 : nnet::activ_config {
     typedef dense_2_softmax_inv_table_t inv_table_t;
     typedef model_default_t accum_t;
     typedef dense_2_softmax_inv_inp_t inv_inp_t;
-    typedef ap_ufixed<7, 1> inp_norm_t;
+    typedef ap_ufixed<9, -1> inp_norm_t;
 };
 
 
