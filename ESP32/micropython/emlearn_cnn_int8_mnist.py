@@ -1,5 +1,6 @@
 import emlearn_cnn_int8 as emlearn_cnn
 import array
+import time
 
 def argmax(arr):
     idx_max = 0
@@ -41,10 +42,12 @@ with open("mnist_cnn_int8.tmdl", 'rb') as f:
 model = emlearn_cnn.new(model_data)
 out_length = model.output_dimensions()[0]
 
-for nb in range(10):
-    display_csv(f"{nb}.csv")
-    raw = load_csv_1d(f"{nb}.csv")
-    predicted = predict(raw)
-    print(predicted)
+while True:
+    for nb in range(10):
+        display_csv(f"{nb}.csv")
+        raw = load_csv_1d(f"{nb}.csv")
+        predicted = predict(raw)
+        print(predicted)
+        time.sleep_ms(1000)
 
 

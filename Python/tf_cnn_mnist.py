@@ -28,12 +28,12 @@ model.add(tf.keras.layers.BatchNormalization(name="bn0"))
 model.add(tf.keras.layers.Activation('relu', name="relu0"))
 
 model.add(tf.keras.layers.Conv2D(12, (3, 3), padding='valid', strides=(2, 2), name='ftr1'))
-model.add(tf.keras.layers.BatchNormalization(name="bn1"));
-model.add(tf.keras.layers.Activation('relu', name="relu1"));
+model.add(tf.keras.layers.BatchNormalization(name="bn1"))
+model.add(tf.keras.layers.Activation('relu', name="relu1"))
 
 model.add(tf.keras.layers.Conv2D(18, (3,3), padding='valid', strides=(2, 2), name='ftr2'))
-model.add(tf.keras.layers.BatchNormalization());
-model.add(tf.keras.layers.Activation('relu'));
+model.add(tf.keras.layers.BatchNormalization())
+model.add(tf.keras.layers.Activation('relu'))
 
 model.add(tf.keras.layers.GlobalAveragePooling2D(name='GAP'))
 model.add(tf.keras.layers.Dense(10, name="fc1"))
